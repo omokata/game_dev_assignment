@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://cgdbuec5ix87s"]
+
+[ext_resource type="Texture2D" uid="uid://w6in4xl2pmnc" path="res://textures/01 Border 01.png" id="1_cl4jv"]
+[ext_resource type="Script" uid="uid://csaeqb2infay4" path="res://scripts/gui/player_menu.gd" id="1_dfi5o"]
+
+[node name="PlayerMenu" type="Control" unique_id=633814243]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dfi5o")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=335559595]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -176.0
+offset_right = 128.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_cl4jv")
+region_rect = Rect2(128, 192, 64, 64)
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect" unique_id=1556287938]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -164.0
+offset_right = 128.0
+offset_bottom = 164.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="MainButtons" type="VBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=1451736552]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Resume" type="Button" parent="NinePatchRect/MarginContainer/MainButtons" unique_id=413689004]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Resume
+"
+
+[node name="Settings" type="Button" parent="NinePatchRect/MarginContainer/MainButtons" unique_id=916468027]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Settings"
+
+[node name="MainMenu" type="Button" parent="NinePatchRect/MarginContainer/MainButtons" unique_id=1140906894]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Main Menu"
+
+[node name="Settings" type="Panel" parent="NinePatchRect" unique_id=863747881]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.75
+offset_top = -207.75
+offset_right = 173.75
+offset_bottom = 207.75
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/Settings" unique_id=2124883457]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -211.5
+offset_top = 30.0
+offset_right = 211.5
+offset_bottom = 72.0
+grow_horizontal = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/Settings" unique_id=2041822642]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -178.5
+offset_top = -339.5
+offset_right = 178.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/Settings/MarginContainer" unique_id=1525753575]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Sensitivity" type="Label" parent="NinePatchRect/Settings/MarginContainer/VBoxContainer" unique_id=29415045]
+layout_mode = 2
+text = "Mouse Sensitivity"
+horizontal_alignment = 1
+
+[node name="SensSlider" type="HSlider" parent="NinePatchRect/Settings/MarginContainer/VBoxContainer" unique_id=2054709428]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="NinePatchRect/Settings/MarginContainer/VBoxContainer" unique_id=1180628791]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 25
+text = "Back"
+
+[connection signal="pressed" from="NinePatchRect/MarginContainer/MainButtons/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="NinePatchRect/MarginContainer/MainButtons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="NinePatchRect/MarginContainer/MainButtons/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="value_changed" from="NinePatchRect/Settings/MarginContainer/VBoxContainer/SensSlider" to="." method="_on_sens_slider_value_changed"]
+[connection signal="pressed" from="NinePatchRect/Settings/MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_settings_pressed"]

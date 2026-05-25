@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://bgnp3xwwhk088"]
+
+[ext_resource type="Script" uid="uid://8ve0qwpja8ub" path="res://scripts/world/test_world.gd" id="1_tjl6x"]
+[ext_resource type="PackedScene" uid="uid://3sldt5ps6n07" path="res://scenes/prefabs/player.tscn" id="2_xl1yy"]
+[ext_resource type="PackedScene" uid="uid://hxrkaxtels20" path="res://scenes/prefabs/crowbar_prop.tscn" id="3_jlx5v"]
+[ext_resource type="AudioStream" uid="uid://dl3pwibaby5ut" path="res://sounds/Aeris - Moving Mountains (freetouse.com).mp3" id="4_7378n"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tjl6x"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_xl1yy"]
+sky_material = SubResource("ProceduralSkyMaterial_tjl6x")
+
+[sub_resource type="Environment" id="Environment_jlx5v"]
+background_mode = 2
+sky = SubResource("Sky_xl1yy")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tjl6x"]
+albedo_color = Color(0.38013154, 0.47971362, 0.28906444, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xl1yy"]
+material = SubResource("StandardMaterial3D_tjl6x")
+size = Vector2(300, 300)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jlx5v"]
+data = PackedVector3Array(150, 0, 150, -150, 0, 150, 150, 0, -150, -150, 0, 150, -150, 0, -150, 150, 0, -150)
+
+[node name="TestWorld" type="Node3D" unique_id=546427512]
+script = ExtResource("1_tjl6x")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1323059798]
+environment = SubResource("Environment_jlx5v")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=242490565]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Base" type="StaticBody3D" parent="." unique_id=905801485]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Base" unique_id=625794885]
+mesh = SubResource("PlaneMesh_xl1yy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Base" unique_id=1952747860]
+shape = SubResource("ConcavePolygonShape3D_jlx5v")
+
+[node name="Player" parent="." unique_id=518612789 instance=ExtResource("2_xl1yy")]
+
+[node name="CrowbarProp" parent="." unique_id=978598976 instance=ExtResource("3_jlx5v")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 6.74328, 0.061607197, -9.91745)
+
+[node name="CrowbarProp2" parent="." unique_id=705847149 instance=ExtResource("3_jlx5v")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -7.7103877, 0.061607197, -9.91745)
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=1562045284]
+stream = ExtResource("4_7378n")
+volume_db = -16.0

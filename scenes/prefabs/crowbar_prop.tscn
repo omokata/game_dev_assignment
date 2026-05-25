@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://hxrkaxtels20"]
+
+[ext_resource type="Script" uid="uid://15h1ay3uiimf" path="res://scripts/interfaces/interactable.gd" id="1_sp2cr"]
+[ext_resource type="Script" uid="uid://drn3mog8ctv2" path="res://scripts/prefabs_script/crowbar_prop.gd" id="1_upujj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m3mr0"]
+albedo_color = Color(0.65321857, 0.3926241, 0.31284976, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m3mr0"]
+material = SubResource("StandardMaterial3D_m3mr0")
+size = Vector3(0.11, 0.91, 0.125)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_m3mr0"]
+data = PackedVector3Array(-0.055, 0.45499998, 0.0625, 0.055, 0.45499998, 0.0625, -0.055, -0.45499998, 0.0625, 0.055, 0.45499998, 0.0625, 0.055, -0.45499998, 0.0625, -0.055, -0.45499998, 0.0625, 0.055, 0.45499998, -0.0625, -0.055, 0.45499998, -0.0625, 0.055, -0.45499998, -0.0625, -0.055, 0.45499998, -0.0625, -0.055, -0.45499998, -0.0625, 0.055, -0.45499998, -0.0625, 0.055, 0.45499998, 0.0625, 0.055, 0.45499998, -0.0625, 0.055, -0.45499998, 0.0625, 0.055, 0.45499998, -0.0625, 0.055, -0.45499998, -0.0625, 0.055, -0.45499998, 0.0625, -0.055, 0.45499998, -0.0625, -0.055, 0.45499998, 0.0625, -0.055, -0.45499998, -0.0625, -0.055, 0.45499998, 0.0625, -0.055, -0.45499998, 0.0625, -0.055, -0.45499998, -0.0625, 0.055, 0.45499998, 0.0625, -0.055, 0.45499998, 0.0625, 0.055, 0.45499998, -0.0625, -0.055, 0.45499998, 0.0625, -0.055, 0.45499998, -0.0625, 0.055, 0.45499998, -0.0625, -0.055, -0.45499998, 0.0625, 0.055, -0.45499998, 0.0625, -0.055, -0.45499998, -0.0625, 0.055, -0.45499998, 0.0625, 0.055, -0.45499998, -0.0625, -0.055, -0.45499998, -0.0625)
+
+[node name="CrowbarProp" type="StaticBody3D" unique_id=978598976]
+script = ExtResource("1_upujj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1861400947]
+mesh = SubResource("BoxMesh_m3mr0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1554079600]
+shape = SubResource("ConcavePolygonShape3D_m3mr0")
+
+[node name="Interactable" type="Area3D" parent="." unique_id=940504392]
+script = ExtResource("1_sp2cr")
+prompt_message = "Press 'E' to interact"
+is_hold_interaction = true
+metadata/_custom_type_script = "uid://15h1ay3uiimf"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" unique_id=1235640186]
+shape = SubResource("ConcavePolygonShape3D_m3mr0")

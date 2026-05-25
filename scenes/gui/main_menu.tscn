@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://04gcfbfodruw"]
+
+[ext_resource type="Texture2D" uid="uid://w6in4xl2pmnc" path="res://textures/01 Border 01.png" id="1_3er1b"]
+[ext_resource type="Script" uid="uid://dj3o0s8nvuus2" path="res://scripts/gui/main_menu.gd" id="1_xkvi0"]
+
+[node name="MainMenu" type="Control" unique_id=419416647]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xkvi0")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=2018503892]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3er1b")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="MainButtons" type="VBoxContainer" parent="NinePatchRect" unique_id=690423995]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Play" type="Button" parent="NinePatchRect/MainButtons" unique_id=809511855]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 25
+text = "Play"
+
+[node name="Settings" type="Button" parent="NinePatchRect/MainButtons" unique_id=1695805873]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 25
+text = "Settings
+"
+
+[node name="Quit" type="Button" parent="NinePatchRect/MainButtons" unique_id=53079768]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 25
+text = "Quit"
+
+[node name="Settings" type="Panel" parent="NinePatchRect" unique_id=684224453]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.5
+offset_top = -211.5
+offset_right = 211.5
+offset_bottom = 211.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/Settings" unique_id=1979113170]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -211.5
+offset_top = 30.0
+offset_right = 211.5
+offset_bottom = 72.0
+grow_horizontal = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/Settings" unique_id=1528753498]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -178.5
+offset_top = -339.5
+offset_right = 178.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/Settings/MarginContainer" unique_id=2132048812]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Sensitivity" type="Label" parent="NinePatchRect/Settings/MarginContainer/VBoxContainer" unique_id=398357911]
+layout_mode = 2
+text = "Mouse Sensitivity"
+horizontal_alignment = 1
+
+[node name="SensSlider" type="HSlider" parent="NinePatchRect/Settings/MarginContainer/VBoxContainer" unique_id=1771628750]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="NinePatchRect/Settings/MarginContainer/VBoxContainer" unique_id=1106560896]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 25
+text = "Back"
+
+[connection signal="button_up" from="NinePatchRect/MainButtons/Play" to="." method="_on_play_button_up"]
+[connection signal="button_up" from="NinePatchRect/MainButtons/Settings" to="." method="_on_settings_button_up"]
+[connection signal="button_up" from="NinePatchRect/MainButtons/Quit" to="." method="_on_quit_button_up"]
+[connection signal="value_changed" from="NinePatchRect/Settings/MarginContainer/VBoxContainer/SensSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="NinePatchRect/Settings/MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_option_pressed"]

@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://3sldt5ps6n07"]
+
+[ext_resource type="Script" uid="uid://pdm8y61tl867" path="res://scripts/prefabs_script/player.gd" id="1_tou0u"]
+[ext_resource type="PackedScene" uid="uid://osse1rdrjexf" path="res://scenes/gui/player_hud.tscn" id="2_8cdkg"]
+[ext_resource type="Script" uid="uid://cwb6ws33vfr1k" path="res://scripts/controller/player_controller.gd" id="2_tou0u"]
+[ext_resource type="Script" uid="uid://06pkw8exbayv" path="res://scripts/controller/first_person_controller.gd" id="3_n0leu"]
+[ext_resource type="Script" uid="uid://c60pkx0dbocyl" path="res://scripts/components/inventory_component.gd" id="5_6o77n"]
+[ext_resource type="Script" uid="uid://clghnki01e0vr" path="res://scripts/components/interaction_component.gd" id="5_56dyf"]
+[ext_resource type="Script" uid="uid://5eoeex7uadka" path="res://scripts/controller/game_controller.gd" id="5_jybep"]
+[ext_resource type="Script" uid="uid://c7gcj8rl67uj0" path="res://scripts/components/item_socket_component.gd" id="7_6v0jn"]
+[ext_resource type="AudioStream" uid="uid://7tnpam38j14i" path="res://sounds/footstep.mp3" id="8_r053x"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_06qtw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tou0u"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_r053x"]
+
+[node name="Player" type="CharacterBody3D" unique_id=518612789 node_paths=PackedStringArray("cam")]
+script = ExtResource("1_tou0u")
+cam = NodePath("Camera3D")
+metadata/_custom_type_script = "uid://byu7csdja4j2r"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=22509624]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_06qtw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1041547056]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_tou0u")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1775532621]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4945141, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=738614426]
+
+[node name="PlayerHud" parent="CanvasLayer" unique_id=1375324533 instance=ExtResource("2_8cdkg")]
+
+[node name="PlayerController" type="Node" parent="." unique_id=99463549]
+script = ExtResource("2_tou0u")
+metadata/_custom_type_script = "uid://cwb6ws33vfr1k"
+
+[node name="FirstPersonController" type="Node" parent="." unique_id=1182349242]
+script = ExtResource("3_n0leu")
+metadata/_custom_type_script = "uid://06pkw8exbayv"
+
+[node name="GameController" type="Node" parent="." unique_id=950337426]
+script = ExtResource("5_jybep")
+metadata/_custom_type_script = "uid://5eoeex7uadka"
+
+[node name="InventoryComponent" type="Node" parent="." unique_id=166952896]
+script = ExtResource("5_6o77n")
+metadata/_custom_type_script = "uid://c60pkx0dbocyl"
+
+[node name="InteractionComponent" type="Node3D" parent="." unique_id=1099410895 node_paths=PackedStringArray("cam_3d")]
+script = ExtResource("5_56dyf")
+cam_3d = NodePath("../Camera3D")
+metadata/_custom_type_script = "uid://clghnki01e0vr"
+
+[node name="ItemSocketComponent" type="Marker3D" parent="." unique_id=2052027000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42733896, 0.9937606, -0.50781965)
+script = ExtResource("7_6v0jn")
+metadata/_custom_type_script = "uid://c7gcj8rl67uj0"
+
+[node name="FootstepSound" type="AudioStreamPlayer3D" parent="." unique_id=681883045]
+stream = ExtResource("8_r053x")
+volume_db = -20.0
+
+[node name="StairsCollision" type="CollisionShape3D" parent="." unique_id=36884100]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.9834204, -0.9939952)
+shape = SubResource("SeparationRayShape3D_r053x")

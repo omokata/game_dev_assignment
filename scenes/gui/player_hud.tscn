@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://osse1rdrjexf"]
+
+[ext_resource type="Script" uid="uid://ciho2x1lhf5bn" path="res://scripts/gui/player_hud.gd" id="1_gtiwb"]
+[ext_resource type="Texture2D" uid="uid://buiinc7lg67p" path="res://textures/circle_crosshair.png" id="1_j4m7o"]
+
+[node name="PlayerHud" type="Control" unique_id=1375324533]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_gtiwb")
+
+[node name="CrosshairRect" type="TextureRect" parent="." unique_id=754522059]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(16, 16)
+texture = ExtResource("1_j4m7o")
+stretch_mode = 3
+
+[node name="InteractionProgressBar" type="ProgressBar" parent="." unique_id=1199773861]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -190.0
+offset_top = -92.0
+offset_right = 190.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="InteractionPromptLabel" type="Label" parent="." unique_id=1954993695]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 94.5
+offset_right = 20.0
+offset_bottom = 117.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ObjectiveLabel" type="Label" parent="." unique_id=1446185541]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -223.0
+offset_top = 36.0
+offset_right = -36.0
+offset_bottom = 59.0
+grow_horizontal = 0
+text = "Objectives: Look around"

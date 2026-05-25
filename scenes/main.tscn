@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://75jt3x0u730c"]
+
+[ext_resource type="Script" uid="uid://2kmij4xue1o7" path="res://scripts/main.gd" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://dh37vg2x781j3" path="res://scripts/gui/gui_manager.gd" id="2_0wfyh"]
+[ext_resource type="Script" uid="uid://b656afdsdtegl" path="res://scripts/world/world_manager.gd" id="2_sugp2"]
+
+[node name="Main" type="Node" unique_id=2068895980]
+script = ExtResource("1_o5qli")
+metadata/_custom_type_script = "uid://2kmij4xue1o7"
+
+[node name="World" type="Node3D" parent="." unique_id=2057649986]
+script = ExtResource("2_sugp2")
+
+[node name="GUI" type="CanvasLayer" parent="." unique_id=690293569]
+script = ExtResource("2_0wfyh")
+
+[node name="FadeEffectRect" type="ColorRect" parent="GUI" unique_id=824146169]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
