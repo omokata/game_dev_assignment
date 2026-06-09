@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 SignalBus="*uid://dedwurd0btlxi"
 SettingsManager="*uid://ceembphr8c0rh"
 
+[display]
+
+window/size/mode=2
+window/stretch/mode="viewport"
+
 [input]
 
 forward={

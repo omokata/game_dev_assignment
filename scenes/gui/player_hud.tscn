@@ -2,6 +2,39 @@
 
 [ext_resource type="Script" uid="uid://ciho2x1lhf5bn" path="res://scripts/gui/player_hud.gd" id="1_gtiwb"]
 [ext_resource type="Texture2D" uid="uid://buiinc7lg67p" path="res://textures/circle_crosshair.png" id="1_j4m7o"]
+[ext_resource type="Shader" uid="uid://n02ws4k3y57x" path="res://shaders/ps1_postprocessing.gdshader" id="2_lbg3w"]
+[ext_resource type="Shader" uid="uid://da8io38tn3k8l" path="res://shaders/vhs.gdshader" id="2_qxd7q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbg3w"]
+shader = ExtResource("2_qxd7q")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.2130000101175
+shader_parameter/scanlines_width = 0.1130000053675
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(1152, 648)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 1.0
+shader_parameter/roll_size = 5.110000242725
+shader_parameter/roll_variation = 0.83100003621262
+shader_parameter/distort_intensity = 0.010000000475
+shader_parameter/noise_opacity = 0.1910000090725
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.02000004845000003
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cug2l"]
+shader = ExtResource("2_lbg3w")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 2
+shader_parameter/dither_size = 8
 
 [node name="PlayerHud" type="Control" unique_id=1375324533]
 layout_mode = 3
@@ -12,6 +45,41 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_gtiwb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1666483607]
+
+[node name="vhsShader" type="ColorRect" parent="CanvasLayer" unique_id=2079285706]
+material = SubResource("ShaderMaterial_lbg3w")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ps1Shader" type="ColorRect" parent="CanvasLayer" unique_id=1353644826]
+visible = false
+material = SubResource("ShaderMaterial_cug2l")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="InteractionProgressBar" type="ProgressBar" parent="." unique_id=1199773861]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -190.0
+offset_top = -92.0
+offset_right = 190.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="CrosshairRect" type="TextureRect" parent="." unique_id=754522059]
 layout_mode = 1
@@ -30,20 +98,6 @@ scale = Vector2(0.25, 0.25)
 pivot_offset = Vector2(16, 16)
 texture = ExtResource("1_j4m7o")
 stretch_mode = 3
-
-[node name="InteractionProgressBar" type="ProgressBar" parent="." unique_id=1199773861]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -190.0
-offset_top = -92.0
-offset_right = 190.0
-offset_bottom = -65.0
-grow_horizontal = 2
-grow_vertical = 0
 
 [node name="InteractionPromptLabel" type="Label" parent="." unique_id=1954993695]
 layout_mode = 1
