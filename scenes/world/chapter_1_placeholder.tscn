@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://drpwgl8wk0kyd"]
 
-[ext_resource type="PackedScene" uid="uid://b5u4jt6qdq8p1" path="res://scenes/prefabs/dtc_placeholder.tscn" id="1_d00k4"]
+[ext_resource type="PackedScene" uid="uid://bcvfku3jsbq8l" path="res://scenes/prefabs/game_map_textured_no_objects.tscn" id="1_xasd6"]
 [ext_resource type="PackedScene" uid="uid://3sldt5ps6n07" path="res://scenes/prefabs/player.tscn" id="2_xasd6"]
+[ext_resource type="PackedScene" uid="uid://bvtqeee1r7f7n" path="res://scenes/prefabs/door.tscn" id="3_h60nm"]
+[ext_resource type="PackedScene" uid="uid://omuwlhcnn7pj" path="res://assets/antagonist_riri.glb" id="4_luuoh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xasd6"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -25,8 +27,78 @@ environment = SubResource("Environment_luuoh")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="dtc_placeholder" parent="." unique_id=1982688691 instance=ExtResource("1_d00k4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.596775, 0)
+[node name="game map textured no objects" parent="." unique_id=261417171 instance=ExtResource("1_xasd6")]
 
 [node name="Player" parent="." unique_id=518612789 instance=ExtResource("2_xasd6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.718769, 8.98966, 46.63966)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.718769, 1.448832, 46.63966)
+MAX_SPEED = 10.0
+
+[node name="Door" parent="." unique_id=1101491587 instance=ExtResource("3_h60nm")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 31, 0, 49)
+
+[node name="Door19" parent="." unique_id=620186364 instance=ExtResource("3_h60nm")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 31, 18.4, 49)
+
+[node name="Door20" parent="." unique_id=1074629123 instance=ExtResource("3_h60nm")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 27.5, 18.4, 48.2)
+
+[node name="Door2" parent="." unique_id=1449747868 instance=ExtResource("3_h60nm")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 32.4, 0, 39.927555)
+
+[node name="Door3" parent="." unique_id=1856804566 instance=ExtResource("3_h60nm")]
+transform = Transform3D(4.371139e-08, 3.821371e-15, -1, 8.742278e-08, -1, 0, -1, -8.742278e-08, -4.371139e-08, 32.328503, 4.000005, 39.555664)
+
+[node name="Door4" parent="." unique_id=590619597 instance=ExtResource("3_h60nm")]
+transform = Transform3D(4.371139e-08, 3.821371e-15, -1, 8.742278e-08, -1, 0, -1, -8.742278e-08, -4.371139e-08, 32.328503, 22.400003, 36.842907)
+
+[node name="Door5" parent="." unique_id=920135884 instance=ExtResource("3_h60nm")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 32.41177, 18.400003, 16.761675)
+
+[node name="Door6" parent="." unique_id=82672148 instance=ExtResource("3_h60nm")]
+transform = Transform3D(-1.3113416e-07, -1.1464113e-14, 1, 8.742278e-08, -1, 0, 1, 8.742278e-08, 1.3113416e-07, 27.74065, 4.000005, -3.8837779)
+
+[node name="Door7" parent="." unique_id=1722626619 instance=ExtResource("3_h60nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, -4)
+
+[node name="Door17" parent="." unique_id=1741049194 instance=ExtResource("3_h60nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 18.4, -4)
+
+[node name="Door8" parent="." unique_id=278290435 instance=ExtResource("3_h60nm")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 32.330055, 0, -3.8373566)
+
+[node name="Door18" parent="." unique_id=157752995 instance=ExtResource("3_h60nm")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 32.330055, 18.4, -3.8373566)
+
+[node name="Door9" parent="." unique_id=2128597509 instance=ExtResource("3_h60nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.41385, -3.50001, -34.669132)
+
+[node name="Door10" parent="." unique_id=868566552 instance=ExtResource("3_h60nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.004486, -3.471849, -34.609505)
+
+[node name="Door16" parent="." unique_id=1340113673 instance=ExtResource("3_h60nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.604485, 18.433096, -34.609505)
+
+[node name="Door11" parent="." unique_id=1309206059 instance=ExtResource("3_h60nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.631027, 5.00679e-06, -4.2416205)
+
+[node name="Door13" parent="." unique_id=1364901376 instance=ExtResource("3_h60nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.631027, 5.00679e-06, 2.5340648)
+
+[node name="Door14" parent="." unique_id=1143107217 instance=ExtResource("3_h60nm")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, -33.672707, 22.373766, 2.5340648)
+
+[node name="Door12" parent="." unique_id=1412621935 instance=ExtResource("3_h60nm")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -31.46634, 5.00679e-06, -3.8517733)
+
+[node name="Door15" parent="." unique_id=248193661 instance=ExtResource("3_h60nm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.64711, 18.4, -4)
+
+[node name="tempJumpscareLight" type="SpotLight3D" parent="." unique_id=1026857952]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881907, 0, 0.25881907, 0.9659258, -2, 1, 52)
+light_color = Color(1, 0, 0, 1)
+light_energy = 10.0
+spot_range = 54.817
+spot_angle = 35.3
+
+[node name="tempJumpscare" parent="." unique_id=1903411803 instance=ExtResource("4_luuoh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 48)

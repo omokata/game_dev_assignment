@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://drpwgl8wk0kyd"]
+
+[ext_resource type="PackedScene" uid="uid://bcvfku3jsbq8l" path="res://scenes/prefabs/game_map_textured_no_objects.tscn" id="1_xasd6"]
+[ext_resource type="PackedScene" uid="uid://3sldt5ps6n07" path="res://scenes/prefabs/player.tscn" id="2_xasd6"]
+[ext_resource type="PackedScene" uid="uid://bvtqeee1r7f7n" path="res://scenes/prefabs/door.tscn" id="3_h60nm"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xasd6"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_h60nm"]
+sky_material = SubResource("ProceduralSkyMaterial_xasd6")
+
+[sub_resource type="Environment" id="Environment_luuoh"]
+background_mode = 2
+sky = SubResource("Sky_h60nm")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Chapter1Placeholder" type="Node3D" unique_id=1074820831]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=319894662]
+environment = SubResource("Environment_luuoh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1597286255]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="game map textured no objects" parent="." unique_id=261417171 instance=ExtResource("1_xasd6")]
+
+[node name="Player" parent="." unique_id=518612789 instance=ExtResource("2_xasd6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.718769, 1.448832, 46.63966)
+MAX_SPEED = 10.0
+
+[node name="Door" parent="." unique_id=1101491587 instance=ExtResource("3_h60nm")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 31, 0, 49)
+
+[node name="Door2" parent="." unique_id=1449747868 instance=ExtResource("3_h60nm")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 32.4, 0, 39.927555)
+
+[node name="Door3" parent="." unique_id=1856804566 instance=ExtResource("3_h60nm")]
+transform = Transform3D(4.371139e-08, 3.821371e-15, -1, 8.742278e-08, -1, 0, -1, -8.742278e-08, -4.371139e-08, 32.328503, 4.000005, 39.555664)
