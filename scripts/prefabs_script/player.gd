@@ -19,8 +19,10 @@ func _ready() -> void:
 	interaction_component.progress_updated.connect(player_hud.update_interaction_progress_bar)
 	walk_speed = MAX_SPEED * WALK_FACTOR
 	current_speed = walk_speed
+	footstep_sound.volume_db = SettingsManager.sfx_db
 
 func move_actor(direction: Vector3, wants_to_jump: bool, is_sprinting: bool, delta: float):
+	footstep_sound.volume_db = SettingsManager.sfx_db
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	

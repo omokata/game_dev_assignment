@@ -2,31 +2,15 @@
 
 [ext_resource type="Script" uid="uid://cb31ykvdx40ys" path="res://scripts/gui/GameScene.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://c2wo2j5ivfwsl" path="res://assets/images/pause_btn.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://b53drr0tj171m" path="res://assets/images/pause_title.png" id="3_qbqpc"]
-[ext_resource type="Texture2D" uid="uid://jjdhxektwia1" path="res://assets/images/btn_resume_normal.png" id="4_bgant"]
-[ext_resource type="Texture2D" uid="uid://da62qhjyxffni" path="res://assets/images/btn_resume_click.png" id="5_q5byy"]
-[ext_resource type="Texture2D" uid="uid://yapcsa6i2f58" path="res://assets/images/btn_resume_hover.png" id="6_yy0qw"]
-[ext_resource type="Texture2D" uid="uid://c0cykcji2h127" path="res://assets/images/btn_restart_normal.png" id="7_nuql8"]
-[ext_resource type="Texture2D" uid="uid://b613i6y6kam2h" path="res://assets/images/btn_restart_click.png" id="8_bqkfd"]
-[ext_resource type="Texture2D" uid="uid://b251giruivx47" path="res://assets/images/btn_restart_hover.png" id="9_gpts1"]
-[ext_resource type="Texture2D" uid="uid://d3hrjdfnnksvw" path="res://assets/images/btn_pause_quit_normal.png" id="10_8kvwq"]
-[ext_resource type="Texture2D" uid="uid://ds2skrtr2naav" path="res://assets/images/btn_pause_quit_click.png" id="11_cxs51"]
-[ext_resource type="Texture2D" uid="uid://cj5amy0ae36ai" path="res://assets/images/btn_pause_quit_hover.png" id="12_5rlq6"]
-[ext_resource type="Texture2D" uid="uid://dhk8tf4mhlx58" path="res://assets/images/quit_title.png" id="13_5oheb"]
-[ext_resource type="Texture2D" uid="uid://34rquq41rq0e" path="res://assets/images/btn_yes_normal.png" id="14_u2sfb"]
-[ext_resource type="Texture2D" uid="uid://cqdwpll3y640e" path="res://assets/images/btn_yes_click.png" id="15_k8eiw"]
-[ext_resource type="Texture2D" uid="uid://ctxsqp40ksr82" path="res://assets/images/btn_yes_hover.png" id="16_7wuj8"]
-[ext_resource type="Texture2D" uid="uid://710tqq0s62so" path="res://assets/images/btn_no_normal.png" id="17_506hf"]
-[ext_resource type="Texture2D" uid="uid://d25ys7b2blfsv" path="res://assets/images/btn_no_click.png" id="18_2tcgm"]
-[ext_resource type="Texture2D" uid="uid://d4adoy65eldik" path="res://assets/images/btn_no_hover.png" id="19_u7e2y"]
+[ext_resource type="PackedScene" uid="uid://dvqkvpcph4gix" path="res://scenes/gui/pause_menu.tscn" id="3_w3kvh"]
 
-[node name="GameScene" type="Node2D"]
+[node name="GameScene" type="Node2D" unique_id=1468493549]
 script = ExtResource("1")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=491580787]
 process_mode = 3
 
-[node name="Background" type="ColorRect" parent="CanvasLayer"]
+[node name="Background" type="ColorRect" parent="CanvasLayer" unique_id=462207989]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -34,7 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.04, 0.02, 0.02, 1)
 
-[node name="Title" type="Label" parent="CanvasLayer"]
+[node name="Title" type="Label" parent="CanvasLayer" unique_id=255880695]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -52,7 +36,7 @@ text = "GAME SCENE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HintLabel" type="Label" parent="CanvasLayer"]
+[node name="HintLabel" type="Label" parent="CanvasLayer" unique_id=2029365211]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -69,7 +53,7 @@ theme_override_font_sizes/font_size = 20
 text = "Click the pause button to pause  |  ESC to return to Main Menu"
 horizontal_alignment = 1
 
-[node name="PauseBtn" type="TextureButton" parent="CanvasLayer"]
+[node name="PauseBtn" type="TextureButton" parent="CanvasLayer" unique_id=1207110813]
 custom_minimum_size = Vector2(90, 90)
 offset_left = 20.0
 offset_top = 20.0
@@ -77,252 +61,4 @@ offset_right = 110.0
 offset_bottom = 110.0
 texture_normal = ExtResource("2")
 
-[node name="PauseMenu" type="Control" parent="CanvasLayer"]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PauseOverlay" type="ColorRect" parent="CanvasLayer/PauseMenu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.82)
-
-[node name="Panel" type="Control" parent="CanvasLayer/PauseMenu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -220.0
-offset_top = -260.0
-offset_right = 220.0
-offset_bottom = 260.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PanelBg" type="ColorRect" parent="CanvasLayer/PauseMenu/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.07, 0.04, 0.04, 1)
-
-[node name="TitleImg" type="TextureRect" parent="CanvasLayer/PauseMenu/Panel"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = -29.0
-offset_top = 2.0
-offset_right = 42.0
-offset_bottom = 174.0
-grow_horizontal = 2
-texture = ExtResource("3_qbqpc")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="VBox" type="VBoxContainer" parent="CanvasLayer/PauseMenu/Panel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -150.0
-offset_top = 130.0
-offset_right = 150.0
-offset_bottom = 543.0
-grow_horizontal = 2
-theme_override_constants/separation = 20
-
-[node name="BtnResume" type="TextureButton" parent="CanvasLayer/PauseMenu/Panel/VBox"]
-custom_minimum_size = Vector2(300, 80)
-layout_mode = 2
-texture_normal = ExtResource("4_bgant")
-texture_pressed = ExtResource("5_q5byy")
-texture_hover = ExtResource("6_yy0qw")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="ResumeLbl" type="Label" parent="CanvasLayer/PauseMenu/Panel/VBox/BtnResume"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -965.0
-offset_bottom = -641.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.9, 0.87, 0.83, 1)
-theme_override_font_sizes/font_size = 26
-text = "RESUME"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BtnRestart" type="TextureButton" parent="CanvasLayer/PauseMenu/Panel/VBox"]
-custom_minimum_size = Vector2(300, 80)
-layout_mode = 2
-texture_normal = ExtResource("7_nuql8")
-texture_pressed = ExtResource("8_bqkfd")
-texture_hover = ExtResource("9_gpts1")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="RestartLbl" type="Label" parent="CanvasLayer/PauseMenu/Panel/VBox/BtnRestart"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.9, 0.87, 0.83, 1)
-theme_override_font_sizes/font_size = 26
-text = "RESTART"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BtnQuit" type="TextureButton" parent="CanvasLayer/PauseMenu/Panel/VBox"]
-custom_minimum_size = Vector2(300, 80)
-layout_mode = 2
-texture_normal = ExtResource("10_8kvwq")
-texture_pressed = ExtResource("11_cxs51")
-texture_hover = ExtResource("12_5rlq6")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="QuitLbl" type="Label" parent="CanvasLayer/PauseMenu/Panel/VBox/BtnQuit"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.9, 0.87, 0.83, 1)
-theme_override_font_sizes/font_size = 26
-text = "QUIT"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="QuitConfirmWindow" type="Control" parent="CanvasLayer/PauseMenu"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ConfirmOverlay" type="ColorRect" parent="CanvasLayer/PauseMenu/QuitConfirmWindow"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.6)
-
-[node name="ConfirmPanel" type="Control" parent="CanvasLayer/PauseMenu/QuitConfirmWindow"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -210.0
-offset_top = -150.0
-offset_right = 210.0
-offset_bottom = 150.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ConfirmPanelBg" type="ColorRect" parent="CanvasLayer/PauseMenu/QuitConfirmWindow/ConfirmPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.07, 0.04, 0.04, 1)
-
-[node name="ConfirmMsgImg" type="TextureRect" parent="CanvasLayer/PauseMenu/QuitConfirmWindow/ConfirmPanel"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = -99.0
-offset_top = -25.0
-offset_right = 102.0
-offset_bottom = 176.0
-grow_horizontal = 2
-texture = ExtResource("13_5oheb")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="BtnHBox" type="HBoxContainer" parent="CanvasLayer/PauseMenu/QuitConfirmWindow/ConfirmPanel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -170.0
-offset_top = 140.0
-offset_right = 170.0
-offset_bottom = 220.0
-grow_horizontal = 2
-theme_override_constants/separation = 20
-alignment = 1
-
-[node name="BtnYes" type="TextureButton" parent="CanvasLayer/PauseMenu/QuitConfirmWindow/ConfirmPanel/BtnHBox"]
-custom_minimum_size = Vector2(150, 70)
-layout_mode = 2
-texture_normal = ExtResource("14_u2sfb")
-texture_pressed = ExtResource("15_k8eiw")
-texture_hover = ExtResource("16_7wuj8")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="YesLbl" type="Label" parent="CanvasLayer/PauseMenu/QuitConfirmWindow/ConfirmPanel/BtnHBox/BtnYes"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.9, 0.87, 0.83, 1)
-theme_override_font_sizes/font_size = 26
-text = "YES"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BtnNo" type="TextureButton" parent="CanvasLayer/PauseMenu/QuitConfirmWindow/ConfirmPanel/BtnHBox"]
-custom_minimum_size = Vector2(150, 70)
-layout_mode = 2
-texture_normal = ExtResource("17_506hf")
-texture_pressed = ExtResource("18_2tcgm")
-texture_hover = ExtResource("19_u7e2y")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="NoLbl" type="Label" parent="CanvasLayer/PauseMenu/QuitConfirmWindow/ConfirmPanel/BtnHBox/BtnNo"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.9, 0.87, 0.83, 1)
-theme_override_font_sizes/font_size = 26
-text = "NO"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="PauseMenu" parent="CanvasLayer" unique_id=58205931 instance=ExtResource("3_w3kvh")]

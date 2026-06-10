@@ -18,7 +18,6 @@ func _ready() -> void:
 
 func process_interaction(is_holding: bool, just_pressed: bool, just_released: bool, has_required_item: Callable, delta: float) -> void:
 	var ray_result: Dictionary = cast_ray()
-	print(ray_result)
 	
 	if ray_result.is_empty():
 		_clear_ui()
