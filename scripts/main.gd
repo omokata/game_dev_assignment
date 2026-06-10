@@ -5,7 +5,8 @@ class_name Main
 @onready var gui: GUIManager = $GUI
 
 const main_menu_scene = "res://scenes/gui/MainMenu.tscn"
-const first_scene = "res://scenes/world/test_world.tscn"
+const first_scene = "res://scenes/cutscenes/cutscene_1.tscn"
+#const first_scene = "res://scenes/world/test_world.tscn"
 const player_menu = "res://scenes/gui/pause_menu.tscn"
 
 func _ready() -> void:

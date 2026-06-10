@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dlle2eaqypvik"]
 
 [ext_resource type="PackedScene" uid="uid://cbnwaq13g35dk" path="res://assets/protagonist_riri.glb" id="1_1i32f"]
+[ext_resource type="Script" uid="uid://nfm0jqex0w42" path="res://scripts/prefabs_script/riri_protagonist.gd" id="1_kx7lj"]
 
 [sub_resource type="Animation" id="Animation_kx7lj"]
 resource_name = "idle_loop"
@@ -1184,6 +1185,7 @@ radius = 0.2397461
 height = 1.6693115
 
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=1016240614]
+script = ExtResource("1_kx7lj")
 
 [node name="protagonist_riri" parent="." unique_id=1335537545 instance=ExtResource("1_1i32f")]
 
