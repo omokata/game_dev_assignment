@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://dmjdov56plir3"]
+
+[ext_resource type="PackedScene" uid="uid://omuwlhcnn7pj" path="res://assets/antagonist_riri.glb" id="1_7avnv"]
+[ext_resource type="Animation" uid="uid://jxe3og1n3tdc" path="res://animation_pack/riri_jumpscare.res" id="2_5ecbj"]
+
+[sub_resource type="Animation" id="Animation_7avnv"]
+length = 1.5
+step = 0.0983
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("antagonist_riri:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0.17453292), Vector3(0, 0, 0), Vector3(0, 0, -0.17453292), Vector3(0, 0, 0), Vector3(0, 0, 0.17453292), Vector3(0, 0, 0), Vector3(0, 0, -0.17453292), Vector3(0, 0, 0), Vector3(0, 0, 0.17453292), Vector3(0, 0, 0), Vector3(0, 0, -0.17453292), Vector3(0, 0, 0), Vector3(0, 0, 0.17453292), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("antagonist_riri:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.020755053, -1.3313441, -3.107706), Vector3(-0.020755053, -0.73202336, -3.107706), Vector3(-0.020755053, -0.73202336, -3.107706), Vector3(-0.020755053, -0.73202336, -3.107706), Vector3(-0.020755053, -0.73202336, -3.107706), Vector3(-0.020755053, -0.73202336, -3.107706), Vector3(-0.020755053, -0.73202336, -3.107706), Vector3(-0.020755053, -0.73202336, -3.107706), Vector3(-0.020755053, -0.73202336, -3.107706), Vector3(-0.020755053, -0.73202336, -3.107706), Vector3(-0.020755053, -0.73202336, -3.107706), Vector3(-0.020755053, -0.73202336, -3.107706), Vector3(-0.020755053, -0.73202336, -3.107706), Vector3(-0.020755053, -0.73202336, -3.107706), Vector3(-0.020755053, -0.73202336, -3.107706), Vector3(-0.020755053, -0.73202336, -3.107706)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7i1ut"]
+_data = {
+&"RESET": SubResource("Animation_7avnv"),
+&"riri_jumpscare": ExtResource("2_5ecbj")
+}
+
+[node name="Node3D" type="Node3D" unique_id=1018261709]
+
+[node name="antagonist_riri" parent="." unique_id=531043698 instance=ExtResource("1_7avnv")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -0.020755053, -1.3313441, -3.107706)
+
+[node name="GeneralSkeleton" parent="antagonist_riri/Armature" parent_id_path=PackedInt32Array(531043698, 513638504) index="0" unique_id=45083810]
+bones/8/position = Vector3(-0.00029498176, 0.1302316, -0.043333903)
+bones/8/rotation = Quaternion(0, 0.74901354, -0.6625547, 0)
+bones/8/scale = Vector3(0.99999976, 0.9999995, 0.99999976)
+bones/9/position = Vector3(-0.0011124613, 0.30178204, -0.000491912)
+bones/9/rotation = Quaternion(-0.019700408, -0.7068323, 0.019700408, 0.7068323)
+bones/9/scale = Vector3(0.9999998, 0.99999994, 0.9999999)
+bones/32/position = Vector3(-0.00029498304, 0.13023166, -0.043333955)
+bones/32/rotation = Quaternion(-0.013252777, 0.7480282, -0.6634305, -0.011753963)
+bones/32/scale = Vector3(1, 0.99999976, 0.9999998)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1144133798]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.026849806, 1.0818137, -2.5856466)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=596481410]
+libraries/ = SubResource("AnimationLibrary_7i1ut")
+
+[editable path="antagonist_riri"]
