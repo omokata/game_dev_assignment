@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://d03cduf5ikhum" path="res://scenes/prefabs/planks.tscn" id="5_7t3cm"]
 [ext_resource type="PackedScene" uid="uid://hxrkaxtels20" path="res://scenes/prefabs/crowbar_prop.tscn" id="6_2dp1v"]
 [ext_resource type="PackedScene" uid="uid://bfrjtygqeiv1l" path="res://scenes/prefabs/key_prop.tscn" id="6_6kqrh"]
+[ext_resource type="Texture2D" uid="uid://ckkc43h45ei8g" path="res://assets/images/keluar Sign.png" id="7_blwnu"]
+[ext_resource type="Script" uid="uid://cxwaaiuk4am32" path="res://scenes/world/exit_door.gd" id="7_kgf0m"]
+[ext_resource type="Script" uid="uid://15h1ay3uiimf" path="res://scripts/interfaces/interactable.gd" id="8_kgf0m"]
 [ext_resource type="PackedScene" uid="uid://du57r7duqbcw0" path="res://scenes/prefabs/riri_antagonist.tscn" id="9_vve0c"]
 [ext_resource type="Script" uid="uid://bnt2iqer0isp1" path="res://scripts/components/enemy_patrol_chase_component.gd" id="10_bhmkp"]
 
@@ -23,6 +26,19 @@ background_mode = 2
 sky = SubResource("Sky_h60nm")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0w56m"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tvkij"]
+material = SubResource("StandardMaterial3D_0w56m")
+size = Vector3(2, 4, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r4cmy"]
+size = Vector3(2, 1, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0w56m"]
+size = Vector3(2, 4, 0.2)
 
 [sub_resource type="Curve3D" id="Curve3D_vve0c"]
 _data = {
@@ -125,6 +141,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6, 20, 47.899998)
 
 [node name="Planks5" parent="." unique_id=1175739964 instance=ExtResource("5_7t3cm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.399992, 20, 47.9)
+
+[node name="ExitDoor" type="Node3D" parent="." unique_id=70608404]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.709396, 23.018705, -24.105865)
+script = ExtResource("7_kgf0m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ExitDoor" unique_id=1159331318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2674084, -2.5766487, -10.4190445)
+mesh = SubResource("BoxMesh_tvkij")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="ExitDoor" unique_id=656938166]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2674084, 0.22335052, -10.4190445)
+mesh = SubResource("BoxMesh_r4cmy")
+
+[node name="Decal" type="Decal" parent="ExitDoor/MeshInstance3D2" unique_id=561431515]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+size = Vector3(2.4, 2, 2.2)
+texture_albedo = ExtResource("7_blwnu")
+
+[node name="Interactable" type="Area3D" parent="ExitDoor" unique_id=966662583]
+script = ExtResource("8_kgf0m")
+prompt_message = "Escape [Hold E]"
+is_hold_interaction = true
+required_item = "key"
+metadata/_custom_type_script = "uid://15h1ay3uiimf"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExitDoor/Interactable" unique_id=1994891584]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2674084, -2.5766487, -10.4190445)
+shape = SubResource("BoxShape3D_0w56m")
 
 [node name="CrowbarProp" parent="." unique_id=978598976 instance=ExtResource("6_2dp1v")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 18, -3, -38)

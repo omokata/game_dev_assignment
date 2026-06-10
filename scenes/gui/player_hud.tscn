@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://ciho2x1lhf5bn" path="res://scripts/gui/player_hud.gd" id="1_gtiwb"]
 [ext_resource type="Texture2D" uid="uid://buiinc7lg67p" path="res://textures/circle_crosshair.png" id="1_j4m7o"]
-[ext_resource type="Shader" uid="uid://n02ws4k3y57x" path="res://shaders/ps1_postprocessing.gdshader" id="2_lbg3w"]
 [ext_resource type="Shader" uid="uid://da8io38tn3k8l" path="res://shaders/vhs.gdshader" id="2_qxd7q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lbg3w"]
@@ -29,13 +28,6 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cug2l"]
-shader = ExtResource("2_lbg3w")
-shader_parameter/enabled = true
-shader_parameter/dithering = true
-shader_parameter/colors = 2
-shader_parameter/dither_size = 8
-
 [node name="PlayerHud" type="Control" unique_id=1375324533]
 layout_mode = 3
 anchors_preset = 15
@@ -50,16 +42,6 @@ script = ExtResource("1_gtiwb")
 
 [node name="vhsShader" type="ColorRect" parent="CanvasLayer" unique_id=2079285706]
 material = SubResource("ShaderMaterial_lbg3w")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="ps1Shader" type="ColorRect" parent="CanvasLayer" unique_id=1353644826]
-visible = false
-material = SubResource("ShaderMaterial_cug2l")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -112,15 +94,3 @@ offset_right = 20.0
 offset_bottom = 117.5
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="ObjectiveLabel" type="Label" parent="." unique_id=1446185541]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -223.0
-offset_top = 36.0
-offset_right = -36.0
-offset_bottom = 59.0
-grow_horizontal = 0
-text = "Objectives: Look around"

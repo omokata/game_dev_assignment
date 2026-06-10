@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cdnkmrdc8rlhk"]
+
+[ext_resource type="Script" uid="uid://bavb4uqpn50u1" path="res://scripts/cutscenes/jumpscare.gd" id="1_2ydjg"]
+[ext_resource type="Shader" uid="uid://n02ws4k3y57x" path="res://shaders/ps1_postprocessing.gdshader" id="1_773d7"]
+[ext_resource type="PackedScene" uid="uid://du57r7duqbcw0" path="res://scenes/prefabs/riri_antagonist.tscn" id="2_de6kt"]
+[ext_resource type="AudioStream" uid="uid://kl2jq01batug" path="res://assets/audio/jumpscare_sound.mp3" id="3_de6kt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_42g8m"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_lrphx"]
+material = SubResource("StandardMaterial3D_42g8m")
+size = Vector2(5, 5)
+center_offset = Vector3(0, 1, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ydjg"]
+shader = ExtResource("1_773d7")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 3
+shader_parameter/dither_size = 8
+
+[node name="Node3D" type="Node3D" unique_id=742455956]
+script = ExtResource("1_2ydjg")
+
+[node name="RiriAntagonist" parent="." unique_id=500678048 instance=ExtResource("2_de6kt")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=698426330]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.39327258)
+mesh = SubResource("QuadMesh_lrphx")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1827928057]
+transform = Transform3D(1, 0, 0, 0, 0.8596829, -0.510828, 0, 0.510828, 0.8596829, 0, 0, 2.6969638)
+light_color = Color(0.733002, 2.7554854e-06, 6.738305e-07, 1)
+light_energy = 16.0
+spot_range = 4.9263673
+spot_angle = 14.437514
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1854332714]
+transform = Transform3D(1, 0, 0, 0, 0.96288043, -0.2699283, 0, 0.2699283, 0.96288043, 0, 1.485461, 0.6572213)
+fov = 53.437496
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera3D" unique_id=198802818]
+
+[node name="ps1Shader" type="ColorRect" parent="Camera3D/CanvasLayer" unique_id=47523064]
+material = SubResource("ShaderMaterial_2ydjg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1254763568]
+stream = ExtResource("3_de6kt")
+volume_db = 5.0
+autoplay = true

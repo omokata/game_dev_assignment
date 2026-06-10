@@ -17,6 +17,7 @@ func _ready() -> void:
 	SignalBus.pause_game_requested.connect(_on_pause_game_requested)
 	SignalBus.resume_game_requested.connect(_on_resume_game_requested)
 	SignalBus.main_menu_requested.connect(_on_main_menu_requested)
+	SignalBus.jumpscare_requested.connect(_on_jumpscare_requested)
 	# Load main menu first
 	gui.load_menu(main_menu_scene)
 
@@ -26,7 +27,7 @@ func _on_quit_game_requested():
 func _on_change_scene_requested(path: String, scene_to_unload_type: SignalBus.SCENE_TYPE,
 					scene_to_load_type: SignalBus.SCENE_TYPE):
 	gui.reset_fade()
-	await gui.fade_out()
+	gui.fade_out()
 	if scene_to_unload_type == SignalBus.SCENE_TYPE.WORLD:
 		world.unload_current_world()
 	elif scene_to_unload_type == SignalBus.SCENE_TYPE.GUI:
@@ -35,7 +36,7 @@ func _on_change_scene_requested(path: String, scene_to_unload_type: SignalBus.SC
 		world.load_world_scene(path)
 	elif scene_to_load_type == SignalBus.SCENE_TYPE.GUI:
 		gui.load_menu(path)
-	await gui.fade_in()
+	gui.fade_in()
 
 func _on_play_game_triggered() -> void:
 	gui.reset_fade()
@@ -62,4 +63,11 @@ func _on_main_menu_requested() -> void:
 	world.resume_world()
 	world.unload_current_world()
 	#gui.unload_current_menu()
+	gui.load_menu(main_menu_scene)
+
+func _on_jumpscare_requested() -> void:
+	world.unload_current_world()
+	world.load_world_scene("res://scenes/cutscenes/jumpscare.tscn")
+	await get_tree().create_timer(2.0).timeout
+	world.unload_current_world()
 	gui.load_menu(main_menu_scene)

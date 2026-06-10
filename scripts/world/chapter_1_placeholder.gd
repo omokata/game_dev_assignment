@@ -11,4 +11,6 @@ func _ready() -> void:
 
 func _on_player_captured() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	SignalBus.main_menu_requested.emit()
+	SignalBus.jumpscare_requested.emit()
+	
+	#SignalBus.main_menu_requested.emit()
