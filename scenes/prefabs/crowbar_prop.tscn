@@ -24,7 +24,7 @@ shape = SubResource("ConcavePolygonShape3D_m3mr0")
 
 [node name="Interactable" type="Area3D" parent="." unique_id=940504392]
 script = ExtResource("1_sp2cr")
-prompt_message = "Press 'E' to interact"
+prompt_message = "Pick up crowbar [E]"
 is_hold_interaction = true
 metadata/_custom_type_script = "uid://15h1ay3uiimf"
 

@@ -1,4 +1,4 @@
-extends StaticBody3D
+extends Node3D
 
 @onready var interactable: Interactable = $Interactable
 
@@ -11,3 +11,5 @@ func _on_interactable_interacted(actor: Node, interactable: Interactable):
 		actor.attach_item(self)
 		interactable.collision_layer = 1
 		interactable.collision_mask = 1
+	if actor.has_method("add_to_inventory"):
+		actor.add_to_inventory("crowbar")

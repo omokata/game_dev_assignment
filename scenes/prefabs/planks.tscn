@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://d03cduf5ikhum"]
 
+[ext_resource type="Script" uid="uid://dl15lfwu7ahrw" path="res://scripts/prefabs_script/planks.gd" id="1_6vjwd"]
 [ext_resource type="Script" uid="uid://15h1ay3uiimf" path="res://scripts/interfaces/interactable.gd" id="1_6ydg0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6vjwd"]
@@ -16,6 +17,7 @@ data = PackedVector3Array(-1.25, 0.59999996, 0.049999997, 1.25, 0.59999996, 0.04
 size = Vector3(2.5, 1.2, 0.1)
 
 [node name="Node3D" type="Node3D" unique_id=1684712677]
+script = ExtResource("1_6vjwd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1355192598]
 mesh = SubResource("BoxMesh_xuhha")
@@ -29,7 +31,7 @@ shape = SubResource("ConcavePolygonShape3D_6ydg0")
 script = ExtResource("1_6ydg0")
 prompt_message = "Take Off Planks"
 is_hold_interaction = true
-required_item = "crowbar_prop"
+required_item = "crowbar"
 metadata/_custom_type_script = "uid://15h1ay3uiimf"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" unique_id=1911370062]
