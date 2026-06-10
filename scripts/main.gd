@@ -26,7 +26,7 @@ func _on_quit_game_requested():
 func _on_change_scene_requested(path: String, scene_to_unload_type: SignalBus.SCENE_TYPE,
 					scene_to_load_type: SignalBus.SCENE_TYPE):
 	gui.reset_fade()
-	gui.fade_out()
+	await gui.fade_out()
 	if scene_to_unload_type == SignalBus.SCENE_TYPE.WORLD:
 		world.unload_current_world()
 	elif scene_to_unload_type == SignalBus.SCENE_TYPE.GUI:
@@ -35,7 +35,7 @@ func _on_change_scene_requested(path: String, scene_to_unload_type: SignalBus.SC
 		world.load_world_scene(path)
 	elif scene_to_load_type == SignalBus.SCENE_TYPE.GUI:
 		gui.load_menu(path)
-	gui.fade_in()
+	await gui.fade_in()
 
 func _on_play_game_triggered() -> void:
 	gui.reset_fade()

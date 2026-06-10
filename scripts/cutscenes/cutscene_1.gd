@@ -9,6 +9,7 @@ extends Node3D
 @onready var panic_music: AudioStreamPlayer = $PanicMusic
 @onready var camera_3d: Camera3D = $Camera3D
 
+#const next_scene = "res://scenes/world/chapter_1_placeholder.tscn"
 const next_scene = "res://scenes/world/test_world.tscn"
 
 var rotated: bool = false
