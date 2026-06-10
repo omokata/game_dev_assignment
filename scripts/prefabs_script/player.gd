@@ -93,6 +93,3 @@ func handle_interaction(_is_holding: bool, _just_pressed: bool, _just_released: 
 		check_inventory_callable,
 		get_physics_process_delta_time()
 	)
-
-func add_to_inventory(item_name: String):
-	inventory_component.add_item(item_name, 1)
