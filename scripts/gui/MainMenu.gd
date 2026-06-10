@@ -2,9 +2,9 @@ extends Control
 
 
 func _ready() -> void:
-	$BtnStart.pressed.connect(_on_btn_start_pressed)
-	$BtnSettings.pressed.connect(_on_btn_settings_pressed)
-	$BtnQuit.pressed.connect(_on_btn_quit_pressed)
+	$MarginContainer/VBoxContainer/BtnStart.pressed.connect(_on_btn_start_pressed)
+	$MarginContainer/VBoxContainer/BtnSettings.pressed.connect(_on_btn_settings_pressed)
+	$MarginContainer/VBoxContainer/BtnQuit.pressed.connect(_on_btn_quit_pressed)
 	$SettingsWindow/Panel/CloseBtn.pressed.connect(_on_settings_close_pressed)
 	_setup_music()
 

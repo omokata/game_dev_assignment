@@ -26,6 +26,7 @@ shape = SubResource("ConcavePolygonShape3D_m3mr0")
 script = ExtResource("1_sp2cr")
 prompt_message = "Press 'E' to interact"
 is_hold_interaction = true
+required_item = "strength"
 metadata/_custom_type_script = "uid://15h1ay3uiimf"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" unique_id=1235640186]

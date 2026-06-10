@@ -1,0 +1,226 @@
+[gd_scene format=3 uid="uid://cdlo0yvnvwf6x"]
+
+[ext_resource type="Script" uid="uid://iyybrvna3ahr" path="res://scripts/gui/MainMenu.gd" id="1_cgg5x"]
+[ext_resource type="Texture2D" uid="uid://8rdycmk2f32a" path="res://assets/images/bg_main_menu.jpg" id="2_3l7yn"]
+[ext_resource type="Texture2D" uid="uid://joi2c0pttjk8" path="res://assets/images/title.png" id="3_ig0xn"]
+[ext_resource type="Texture2D" uid="uid://cs1lu8d12vpn7" path="res://assets/images/btn_start_normal.png" id="4_f051r"]
+[ext_resource type="Texture2D" uid="uid://bkhw6rh137b4e" path="res://assets/images/btn_start_hover.png" id="5_cq02v"]
+[ext_resource type="Texture2D" uid="uid://dqdo5bajx416i" path="res://assets/images/btn_settings_normal.png" id="6_l4tb1"]
+[ext_resource type="Texture2D" uid="uid://dy0dbo100si8p" path="res://assets/images/btn_settings_click.png" id="7_ekvyq"]
+[ext_resource type="Texture2D" uid="uid://cy0kgfrim5j7e" path="res://assets/images/btn_settings_hover.png" id="8_v233j"]
+[ext_resource type="Texture2D" uid="uid://bv0jqwjpwa7ff" path="res://assets/images/btn_quit_normal.png" id="9_ahojn"]
+[ext_resource type="Texture2D" uid="uid://dbfy3qriipmpt" path="res://assets/images/btn_quit_click.png" id="10_o6h84"]
+[ext_resource type="Texture2D" uid="uid://bxht20kmahnwa" path="res://assets/images/btn_quit_hover.png" id="11_jdob3"]
+
+[node name="MainMenu" type="Control" unique_id=1505382641]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cgg5x")
+
+[node name="Background" type="TextureRect" parent="." unique_id=901721949]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3l7yn")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1859005175]
+layout_mode = 1
+offset_left = 95.0
+offset_right = 571.44446
+offset_bottom = 268.0
+texture = ExtResource("3_ig0xn")
+expand_mode = 1
+
+[node name="SettingsWindow" type="Control" parent="." unique_id=556097414]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="ColorRect" parent="SettingsWindow" unique_id=777211362]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="Panel" type="Control" parent="SettingsWindow" unique_id=573484486]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -170.0
+offset_right = 220.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelBg" type="ColorRect" parent="SettingsWindow/Panel" unique_id=2081807959]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.04, 0.04, 1)
+
+[node name="TitleLabel" type="Label" parent="SettingsWindow/Panel" unique_id=1146504676]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 18.0
+offset_bottom = 62.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.95, 0.92, 0.88, 1)
+theme_override_font_sizes/font_size = 34
+text = "SETTINGS"
+horizontal_alignment = 1
+
+[node name="Divider" type="HSeparator" parent="SettingsWindow/Panel" unique_id=910054740]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 68.0
+offset_right = -20.0
+offset_bottom = 75.0
+grow_horizontal = 2
+
+[node name="SettingsVBox" type="VBoxContainer" parent="SettingsWindow/Panel" unique_id=390720194]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 25.0
+offset_top = 83.0
+offset_right = -25.0
+offset_bottom = 270.0
+grow_horizontal = 2
+theme_override_constants/separation = 18
+
+[node name="MusicRow" type="HBoxContainer" parent="SettingsWindow/Panel/SettingsVBox" unique_id=1564932355]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="MusicLabel" type="Label" parent="SettingsWindow/Panel/SettingsVBox/MusicRow" unique_id=1791916725]
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.82, 0.78, 1)
+theme_override_font_sizes/font_size = 18
+text = "BACKGROUND MUSIC"
+
+[node name="MusicSlider" type="HSlider" parent="SettingsWindow/Panel/SettingsVBox/MusicRow" unique_id=1296244291]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 70.0
+
+[node name="SFXRow" type="HBoxContainer" parent="SettingsWindow/Panel/SettingsVBox" unique_id=126484805]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="SFXLabel" type="Label" parent="SettingsWindow/Panel/SettingsVBox/SFXRow" unique_id=1409580693]
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.82, 0.78, 1)
+theme_override_font_sizes/font_size = 18
+text = "SFX VOLUME"
+
+[node name="SFXSlider" type="HSlider" parent="SettingsWindow/Panel/SettingsVBox/SFXRow" unique_id=716912847]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 75.0
+
+[node name="BrightnessRow" type="HBoxContainer" parent="SettingsWindow/Panel/SettingsVBox" unique_id=409367764]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="BrightnessLabel" type="Label" parent="SettingsWindow/Panel/SettingsVBox/BrightnessRow" unique_id=892047429]
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.82, 0.78, 1)
+theme_override_font_sizes/font_size = 18
+text = "BRIGHTNESS"
+
+[node name="BrightnessSlider" type="HSlider" parent="SettingsWindow/Panel/SettingsVBox/BrightnessRow" unique_id=22561174]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 50.0
+
+[node name="CloseBtn" type="Button" parent="SettingsWindow/Panel" unique_id=2129734924]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -55.0
+offset_right = 100.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 18
+text = "✕   CLOSE"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1946957968]
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1339914846]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 57.0
+offset_top = -73.0
+offset_right = 314.0
+offset_bottom = 279.95776
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1172178811]
+layout_mode = 2
+alignment = 2
+
+[node name="BtnStart" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=884321650]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("4_f051r")
+texture_pressed = ExtResource("4_f051r")
+texture_hover = ExtResource("5_cq02v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="BtnSettings" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=1419559857]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("6_l4tb1")
+texture_pressed = ExtResource("7_ekvyq")
+texture_hover = ExtResource("8_v233j")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="BtnQuit" type="TextureButton" parent="MarginContainer/VBoxContainer" unique_id=1050761995]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("9_ahojn")
+texture_pressed = ExtResource("10_o6h84")
+texture_hover = ExtResource("11_jdob3")
+ignore_texture_size = true
+stretch_mode = 0
