@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://d03cduf5ikhum"]
+
+[ext_resource type="Script" uid="uid://15h1ay3uiimf" path="res://scripts/interfaces/interactable.gd" id="1_6ydg0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6vjwd"]
+albedo_color = Color(0.539997, 0.3804085, 0.25994554, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xuhha"]
+material = SubResource("StandardMaterial3D_6vjwd")
+size = Vector3(2.5, 1.2, 0.1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6ydg0"]
+data = PackedVector3Array(-1.25, 0.59999996, 0.049999997, 1.25, 0.59999996, 0.049999997, -1.25, -0.59999996, 0.049999997, 1.25, 0.59999996, 0.049999997, 1.25, -0.59999996, 0.049999997, -1.25, -0.59999996, 0.049999997, 1.25, 0.59999996, -0.049999997, -1.25, 0.59999996, -0.049999997, 1.25, -0.59999996, -0.049999997, -1.25, 0.59999996, -0.049999997, -1.25, -0.59999996, -0.049999997, 1.25, -0.59999996, -0.049999997, 1.25, 0.59999996, 0.049999997, 1.25, 0.59999996, -0.049999997, 1.25, -0.59999996, 0.049999997, 1.25, 0.59999996, -0.049999997, 1.25, -0.59999996, -0.049999997, 1.25, -0.59999996, 0.049999997, -1.25, 0.59999996, -0.049999997, -1.25, 0.59999996, 0.049999997, -1.25, -0.59999996, -0.049999997, -1.25, 0.59999996, 0.049999997, -1.25, -0.59999996, 0.049999997, -1.25, -0.59999996, -0.049999997, 1.25, 0.59999996, 0.049999997, -1.25, 0.59999996, 0.049999997, 1.25, 0.59999996, -0.049999997, -1.25, 0.59999996, 0.049999997, -1.25, 0.59999996, -0.049999997, 1.25, 0.59999996, -0.049999997, -1.25, -0.59999996, 0.049999997, 1.25, -0.59999996, 0.049999997, -1.25, -0.59999996, -0.049999997, 1.25, -0.59999996, 0.049999997, 1.25, -0.59999996, -0.049999997, -1.25, -0.59999996, -0.049999997)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ebc6"]
+size = Vector3(2.5, 1.2, 0.1)
+
+[node name="Node3D" type="Node3D" unique_id=1684712677]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1355192598]
+mesh = SubResource("BoxMesh_xuhha")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=109874765]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=2039306157]
+shape = SubResource("ConcavePolygonShape3D_6ydg0")
+
+[node name="Interactable" type="Area3D" parent="." unique_id=1399868100]
+script = ExtResource("1_6ydg0")
+prompt_message = "Take Off Planks"
+is_hold_interaction = true
+required_item = "crowbar_prop"
+metadata/_custom_type_script = "uid://15h1ay3uiimf"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" unique_id=1911370062]
+shape = SubResource("BoxShape3D_3ebc6")

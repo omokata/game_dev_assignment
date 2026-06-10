@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://3sldt5ps6n07" path="res://scenes/prefabs/player.tscn" id="2_xasd6"]
 [ext_resource type="PackedScene" uid="uid://bvtqeee1r7f7n" path="res://scenes/prefabs/door.tscn" id="3_h60nm"]
 [ext_resource type="PackedScene" uid="uid://omuwlhcnn7pj" path="res://assets/antagonist_riri.glb" id="4_luuoh"]
+[ext_resource type="PackedScene" uid="uid://d03cduf5ikhum" path="res://scenes/prefabs/planks.tscn" id="5_7t3cm"]
+[ext_resource type="PackedScene" uid="uid://hxrkaxtels20" path="res://scenes/prefabs/crowbar_prop.tscn" id="6_2dp1v"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xasd6"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -95,6 +97,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.64711, 18.4, -4)
 
 [node name="tempJumpscareLight" type="SpotLight3D" parent="." unique_id=1026857952]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881907, 0, 0.25881907, 0.9659258, -2, 1, 52)
+visible = false
 light_color = Color(1, 0, 0, 1)
 light_energy = 10.0
 spot_range = 54.817
@@ -102,3 +105,13 @@ spot_angle = 35.3
 
 [node name="tempJumpscare" parent="." unique_id=1903411803 instance=ExtResource("4_luuoh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 48)
+visible = false
+
+[node name="Planks" parent="." unique_id=1684712677 instance=ExtResource("5_7t3cm")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 32.074688, 1.5000048, 29.575586)
+
+[node name="Planks2" parent="." unique_id=1496344039 instance=ExtResource("5_7t3cm")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 32.074688, 1.5000048, 9.475586)
+
+[node name="CrowbarProp" parent="." unique_id=978598976 instance=ExtResource("6_2dp1v")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 31, 0, 14)

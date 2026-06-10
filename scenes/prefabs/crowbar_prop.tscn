@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://drn3mog8ctv2" path="res://scripts/prefabs_script/crowbar_prop.gd" id="1_upujj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m3mr0"]
-albedo_color = Color(0.65321857, 0.3926241, 0.31284976, 1)
+albedo_color = Color(0.52682346, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_m3mr0"]
 material = SubResource("StandardMaterial3D_m3mr0")
