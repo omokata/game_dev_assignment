@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://du57r7duqbcw0"]
 
+[ext_resource type="Script" uid="uid://bc8m5a4i1eudn" path="res://scenes/prefabs/riri_antagonist.gd" id="1_8bc4o"]
 [ext_resource type="PackedScene" uid="uid://omuwlhcnn7pj" path="res://assets/antagonist_riri.glb" id="1_wsg4i"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8bc4o"]
@@ -1184,6 +1185,7 @@ _data = {
 }
 
 [node name="RiriAntagonist" type="CharacterBody3D" unique_id=500678048]
+script = ExtResource("1_8bc4o")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=377088291]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9156494, 0)

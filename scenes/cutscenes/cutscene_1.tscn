@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://dowm6d2mh5cgl"]
+
+[ext_resource type="Script" uid="uid://cn0q1vwufipka" path="res://scripts/cutscenes/cutscene_1.gd" id="1_262ir"]
+[ext_resource type="Shader" uid="uid://da8io38tn3k8l" path="res://shaders/vhs.gdshader" id="2_pgol8"]
+[ext_resource type="PackedScene" uid="uid://du57r7duqbcw0" path="res://scenes/prefabs/riri_antagonist.tscn" id="2_qr4we"]
+[ext_resource type="PackedScene" uid="uid://dlle2eaqypvik" path="res://scenes/prefabs/riri_protagonist.tscn" id="3_pgol8"]
+[ext_resource type="AudioStream" uid="uid://bjdwtx51rw4ys" path="res://assets/audio/panic_music.mp3" id="4_qr4we"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j1xx4"]
+sky_horizon_color = Color(0.12636542, 0.12976024, 0.13655785, 1)
+sky_curve = 0.35676184
+
+[sub_resource type="Sky" id="Sky_15i2x"]
+sky_material = SubResource("ProceduralSkyMaterial_j1xx4")
+
+[sub_resource type="Environment" id="Environment_c8wig"]
+background_mode = 2
+sky = SubResource("Sky_15i2x")
+tonemap_mode = 2
+glow_enabled = true
+volumetric_fog_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wogi8"]
+albedo_color = Color(0.42214543, 0.3612654, 0.31621048, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kq4sx"]
+material = SubResource("StandardMaterial3D_wogi8")
+size = Vector3(30, 0.5, 300)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6nnoy"]
+albedo_color = Color(0.34920186, 0.35930452, 0.3829009, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qgbrj"]
+material = SubResource("StandardMaterial3D_6nnoy")
+size = Vector3(0.15, 100, 300)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4orpn"]
+albedo_color = Color(0.26214448, 0.24792627, 0.20975235, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tp2nr"]
+material = SubResource("StandardMaterial3D_4orpn")
+size = Vector2(300, 300)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_je6dx"]
+data = PackedVector3Array(150, 0, 150, -150, 0, 150, 150, 0, -150, -150, 0, 150, -150, 0, -150, 150, 0, -150)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j1xx4"]
+shader = ExtResource("2_pgol8")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.2130000101175
+shader_parameter/scanlines_width = 0.1130000053675
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(1152, 648)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 1.0
+shader_parameter/roll_size = 5.110000242725
+shader_parameter/roll_variation = 0.83100003621262
+shader_parameter/distort_intensity = 0.010000000475
+shader_parameter/noise_opacity = 0.1910000090725
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.02000004845000003
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[node name="Cutscene1" type="Node3D" unique_id=344664522]
+script = ExtResource("1_262ir")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=620660103]
+environment = SubResource("Environment_c8wig")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1194996013]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, -23.158928, 26.492916, 0)
+light_color = Color(0, 0, 0, 1)
+light_angular_distance = 27.62
+light_negative = true
+shadow_enabled = true
+
+[node name="Pavement" type="MeshInstance3D" parent="." unique_id=1874529088]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.332565, 0.14926529, 0)
+mesh = SubResource("BoxMesh_kq4sx")
+
+[node name="Wall" type="MeshInstance3D" parent="." unique_id=1273047610]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.514208, 0)
+mesh = SubResource("BoxMesh_qgbrj")
+
+[node name="Base" type="StaticBody3D" parent="." unique_id=292869670]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Base" unique_id=1814353926]
+mesh = SubResource("PlaneMesh_tp2nr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Base" unique_id=557317676]
+shape = SubResource("ConcavePolygonShape3D_je6dx")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2021968497]
+transform = Transform3D(0.92916894, 0.21650147, -0.29961997, 0.020975616, 0.77835304, 0.6274765, 0.36905965, -0.5893163, 0.7186802, 1.177494, 5.674707, 18.951578)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera3D" unique_id=1556190913]
+
+[node name="vhsShader" type="ColorRect" parent="Camera3D/CanvasLayer" unique_id=824018640]
+material = SubResource("ShaderMaterial_j1xx4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RiriAntagonist" parent="." unique_id=500678048 instance=ExtResource("2_qr4we")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.057844, 0.39432365, -10.538016)
+
+[node name="CharacterBody3D" parent="." unique_id=1016240614 instance=ExtResource("3_pgol8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.058762, 0.40162116, -3.5351133)
+
+[node name="PanicMusic" type="AudioStreamPlayer" parent="." unique_id=1718122326]
+stream = ExtResource("4_qr4we")

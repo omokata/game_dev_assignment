@@ -1,0 +1,409 @@
+[gd_scene format=3 uid="uid://dvqkvpcph4gix"]
+
+[ext_resource type="Script" uid="uid://bpqiyvvrlc7yd" path="res://scripts/gui/pause_menu.gd" id="1_arvqj"]
+[ext_resource type="Texture2D" uid="uid://b53drr0tj171m" path="res://assets/images/pause_title.png" id="1_fli14"]
+[ext_resource type="Texture2D" uid="uid://jjdhxektwia1" path="res://assets/images/btn_resume_normal.png" id="2_arvqj"]
+[ext_resource type="Texture2D" uid="uid://da62qhjyxffni" path="res://assets/images/btn_resume_click.png" id="3_oxwev"]
+[ext_resource type="Texture2D" uid="uid://yapcsa6i2f58" path="res://assets/images/btn_resume_hover.png" id="4_ov6vo"]
+[ext_resource type="Texture2D" uid="uid://dqdo5bajx416i" path="res://assets/images/btn_settings_normal.png" id="6_kwvxv"]
+[ext_resource type="Texture2D" uid="uid://dy0dbo100si8p" path="res://assets/images/btn_settings_click.png" id="7_ni1ui"]
+[ext_resource type="Texture2D" uid="uid://d3hrjdfnnksvw" path="res://assets/images/btn_pause_quit_normal.png" id="8_mbsc2"]
+[ext_resource type="Texture2D" uid="uid://cy0kgfrim5j7e" path="res://assets/images/btn_settings_hover.png" id="8_o3jvn"]
+[ext_resource type="Texture2D" uid="uid://ds2skrtr2naav" path="res://assets/images/btn_pause_quit_click.png" id="9_ku07f"]
+[ext_resource type="Texture2D" uid="uid://cj5amy0ae36ai" path="res://assets/images/btn_pause_quit_hover.png" id="10_t4t3h"]
+[ext_resource type="Texture2D" uid="uid://dhk8tf4mhlx58" path="res://assets/images/quit_title.png" id="11_685hi"]
+[ext_resource type="Texture2D" uid="uid://34rquq41rq0e" path="res://assets/images/btn_yes_normal.png" id="12_ro6i6"]
+[ext_resource type="Texture2D" uid="uid://cqdwpll3y640e" path="res://assets/images/btn_yes_click.png" id="13_a6vf5"]
+[ext_resource type="Texture2D" uid="uid://ctxsqp40ksr82" path="res://assets/images/btn_yes_hover.png" id="14_0gpp6"]
+[ext_resource type="Texture2D" uid="uid://710tqq0s62so" path="res://assets/images/btn_no_normal.png" id="15_a6mye"]
+[ext_resource type="Texture2D" uid="uid://d25ys7b2blfsv" path="res://assets/images/btn_no_click.png" id="16_ps68l"]
+[ext_resource type="Texture2D" uid="uid://d4adoy65eldik" path="res://assets/images/btn_no_hover.png" id="17_yktgd"]
+
+[node name="PauseMenu" type="Control" unique_id=58205931]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_arvqj")
+
+[node name="PauseOverlay" type="ColorRect" parent="." unique_id=943932754]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.82)
+
+[node name="Panel" type="Control" parent="." unique_id=878322531]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -260.0
+offset_right = 220.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelBg" type="ColorRect" parent="Panel" unique_id=1318721061]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.04, 0.04, 1)
+
+[node name="TitleImg" type="TextureRect" parent="Panel" unique_id=2084837435]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -29.0
+offset_top = 2.0
+offset_right = 42.0
+offset_bottom = 174.0
+grow_horizontal = 2
+texture = ExtResource("1_fli14")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBox" type="VBoxContainer" parent="Panel" unique_id=447327786]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 130.0
+offset_right = 150.0
+offset_bottom = 543.0
+grow_horizontal = 2
+theme_override_constants/separation = 20
+
+[node name="BtnResume" type="TextureButton" parent="Panel/VBox" unique_id=715147780]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+texture_normal = ExtResource("2_arvqj")
+texture_pressed = ExtResource("3_oxwev")
+texture_hover = ExtResource("4_ov6vo")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ResumeLbl" type="Label" parent="Panel/VBox/BtnResume" unique_id=1696653436]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -965.0
+offset_bottom = -641.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.9, 0.87, 0.83, 1)
+theme_override_font_sizes/font_size = 26
+text = "RESUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnSettings" type="TextureButton" parent="Panel/VBox" unique_id=570290476]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("6_kwvxv")
+texture_pressed = ExtResource("7_ni1ui")
+texture_hover = ExtResource("8_o3jvn")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="BtnQuit" type="TextureButton" parent="Panel/VBox" unique_id=1881344817]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+texture_normal = ExtResource("8_mbsc2")
+texture_pressed = ExtResource("9_ku07f")
+texture_hover = ExtResource("10_t4t3h")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="QuitLbl" type="Label" parent="Panel/VBox/BtnQuit" unique_id=944386920]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.9, 0.87, 0.83, 1)
+theme_override_font_sizes/font_size = 26
+text = "QUIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitConfirmWindow" type="Control" parent="." unique_id=12023520]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmOverlay" type="ColorRect" parent="QuitConfirmWindow" unique_id=727119665]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="ConfirmPanel" type="Control" parent="QuitConfirmWindow" unique_id=699792357]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -150.0
+offset_right = 210.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmPanelBg" type="ColorRect" parent="QuitConfirmWindow/ConfirmPanel" unique_id=1885243081]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.04, 0.04, 1)
+
+[node name="ConfirmMsgImg" type="TextureRect" parent="QuitConfirmWindow/ConfirmPanel" unique_id=2095061478]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -99.0
+offset_top = -25.0
+offset_right = 102.0
+offset_bottom = 176.0
+grow_horizontal = 2
+texture = ExtResource("11_685hi")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BtnHBox" type="HBoxContainer" parent="QuitConfirmWindow/ConfirmPanel" unique_id=1967639957]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -170.0
+offset_top = 140.0
+offset_right = 170.0
+offset_bottom = 220.0
+grow_horizontal = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="BtnYes" type="TextureButton" parent="QuitConfirmWindow/ConfirmPanel/BtnHBox" unique_id=1724162621]
+custom_minimum_size = Vector2(150, 70)
+layout_mode = 2
+texture_normal = ExtResource("12_ro6i6")
+texture_pressed = ExtResource("13_a6vf5")
+texture_hover = ExtResource("14_0gpp6")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="YesLbl" type="Label" parent="QuitConfirmWindow/ConfirmPanel/BtnHBox/BtnYes" unique_id=150258513]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.9, 0.87, 0.83, 1)
+theme_override_font_sizes/font_size = 26
+text = "YES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnNo" type="TextureButton" parent="QuitConfirmWindow/ConfirmPanel/BtnHBox" unique_id=1568023671]
+custom_minimum_size = Vector2(150, 70)
+layout_mode = 2
+texture_normal = ExtResource("15_a6mye")
+texture_pressed = ExtResource("16_ps68l")
+texture_hover = ExtResource("17_yktgd")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="NoLbl" type="Label" parent="QuitConfirmWindow/ConfirmPanel/BtnHBox/BtnNo" unique_id=1362037722]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.9, 0.87, 0.83, 1)
+theme_override_font_sizes/font_size = 26
+text = "NO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsWindow" type="Control" parent="." unique_id=494479106]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 26.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="ColorRect" parent="SettingsWindow" unique_id=1031024073]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="Panel" type="Control" parent="SettingsWindow" unique_id=614965647]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -170.0
+offset_right = 220.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelBg" type="ColorRect" parent="SettingsWindow/Panel" unique_id=440273372]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.04, 0.04, 1)
+
+[node name="TitleLabel" type="Label" parent="SettingsWindow/Panel" unique_id=1316402246]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 18.0
+offset_bottom = 62.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.95, 0.92, 0.88, 1)
+theme_override_font_sizes/font_size = 34
+text = "SETTINGS"
+horizontal_alignment = 1
+
+[node name="Divider" type="HSeparator" parent="SettingsWindow/Panel" unique_id=144008826]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 68.0
+offset_right = -20.0
+offset_bottom = 75.0
+grow_horizontal = 2
+
+[node name="SettingsVBox" type="VBoxContainer" parent="SettingsWindow/Panel" unique_id=933479392]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 25.0
+offset_top = 83.0
+offset_right = -25.0
+offset_bottom = 270.0
+grow_horizontal = 2
+theme_override_constants/separation = 18
+
+[node name="MusicRow" type="HBoxContainer" parent="SettingsWindow/Panel/SettingsVBox" unique_id=137300916]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="MusicLabel" type="Label" parent="SettingsWindow/Panel/SettingsVBox/MusicRow" unique_id=863433394]
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.82, 0.78, 1)
+theme_override_font_sizes/font_size = 18
+text = "BACKGROUND MUSIC"
+
+[node name="MusicSlider" type="HSlider" parent="SettingsWindow/Panel/SettingsVBox/MusicRow" unique_id=440102920]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="SFXRow" type="HBoxContainer" parent="SettingsWindow/Panel/SettingsVBox" unique_id=1810361094]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="SFXLabel" type="Label" parent="SettingsWindow/Panel/SettingsVBox/SFXRow" unique_id=973422735]
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.82, 0.78, 1)
+theme_override_font_sizes/font_size = 18
+text = "SFX VOLUME"
+
+[node name="SFXSlider" type="HSlider" parent="SettingsWindow/Panel/SettingsVBox/SFXRow" unique_id=585138737]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="MouseSensRow" type="HBoxContainer" parent="SettingsWindow/Panel/SettingsVBox" unique_id=537351079]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="SensLabel" type="Label" parent="SettingsWindow/Panel/SettingsVBox/MouseSensRow" unique_id=1677326032]
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.82, 0.78, 1)
+theme_override_font_sizes/font_size = 18
+text = "MOUSE SENSITIVITY"
+
+[node name="SensSlider" type="HSlider" parent="SettingsWindow/Panel/SettingsVBox/MouseSensRow" unique_id=1776813304]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="CloseBtn" type="Button" parent="SettingsWindow/Panel" unique_id=866000037]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -55.0
+offset_right = 100.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 18
+text = "✕   CLOSE"
+
+[connection signal="pressed" from="Panel/VBox/BtnResume" to="." method="_on_btn_resume_pressed"]
+[connection signal="pressed" from="Panel/VBox/BtnSettings" to="." method="_on_btn_settings_pressed"]
+[connection signal="pressed" from="Panel/VBox/BtnQuit" to="." method="_on_btn_quit_pressed"]
+[connection signal="value_changed" from="SettingsWindow/Panel/SettingsVBox/MusicRow/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="SettingsWindow/Panel/SettingsVBox/SFXRow/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="SettingsWindow/Panel/SettingsVBox/MouseSensRow/SensSlider" to="." method="_on_sens_slider_value_changed"]
+[connection signal="pressed" from="SettingsWindow/Panel/CloseBtn" to="." method="_on_close_btn_pressed"]

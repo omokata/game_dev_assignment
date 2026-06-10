@@ -19,8 +19,10 @@ func _ready() -> void:
 	interaction_component.progress_updated.connect(player_hud.update_interaction_progress_bar)
 	walk_speed = MAX_SPEED * WALK_FACTOR
 	current_speed = walk_speed
+	footstep_sound.volume_db = SettingsManager.sfx_db
 
 func move_actor(direction: Vector3, wants_to_jump: bool, is_sprinting: bool, delta: float):
+	footstep_sound.volume_db = SettingsManager.sfx_db
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
@@ -75,6 +77,9 @@ func activate_cam(is_active: bool):
 func attach_item(item_to_attach: StaticBody3D):
 	item_socket_component.deattach_current_item()
 	item_socket_component.attached_item(item_to_attach)
+
+func add_to_inventory(item_name: String):
+	inventory_component.add_item(item_name, 1)
 
 func handle_interaction(_is_holding: bool, _just_pressed: bool, _just_released: bool) -> void:
 	var check_inventory_callable = func(item_name: String) -> bool:
