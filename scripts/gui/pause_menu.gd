@@ -29,6 +29,7 @@ func _on_btn_resume_pressed() -> void:
 
 
 func _on_btn_quit_pressed() -> void:
+	queue_free()
 	SignalBus.main_menu_requested.emit()
 
 
