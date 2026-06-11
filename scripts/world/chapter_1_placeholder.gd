@@ -16,17 +16,22 @@ extends Node3D
 @onready var key_interactable: Interactable = $key_prop/Interactable
 @onready var exit_interactable: Interactable = $ExitDoor/Interactable
 @onready var exit_seen_target: CollisionShape3D = $ExitDoor/Interactable/CollisionShape3D
+@onready var crowbar_door_1_interactable: Interactable = $Doors/Crowbar_Door_1/Interactable
+@onready var crowbar_door_2_interactable: Interactable = $Doors/Crowbar_Door2/Interactable
 
 @export var exit_seen_distance := 120.0
+
+const CROWBAR_DOOR_LOCK_ITEM := "__exit_first"
 
 var dialog: Dictionary = {
 	"dialog_1": "I managed to sneak into this 'dewan', but I need to get out of here.",
 	"dialog_2": "What was that sound? Sounds like it's coming from the left.",
-	"dialog_exit_seen": "I saw the exit!",
+	"dialog_exit_seen": "I saw the exit! I need to go there",
 	"dialog_exit_locked": "Uhh I need a key.",
 	"dialog_enemy_guarding": "Why is he there? Is he guarding something? I need to check out that place.",
 	"dialog_crowbar_seen": "Crowbar! Come to think of it, there are rooms with planks attached, maybe those rooms have keys.",
-	"dialog_key_picked": "I can finally escape! I have to be careful just in case he's guarding the door."
+	"dialog_key_picked": "I can finally escape! I have to be careful just in case he's guarding the door.",
+	"dialog_go_exit_first": "I can't waste time going in there, I need to go to the exit first."
 }
 
 var player_was_captured := false
@@ -45,6 +50,7 @@ func _ready() -> void:
 	_connect_enemy_capture(floor_2_enemy_patrol_chase_component)
 	crowbar_interactable.interacted.connect(_on_crowbar_picked)
 	key_interactable.interacted.connect(_on_key_picked)
+	_set_crowbar_doors_locked(true)
 	_set_enemy_group_active(enemy_2_floor_1, false)
 	_set_enemy_group_active(enemy_floor_2, false)
 	_play_start_dialog()
@@ -52,6 +58,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if not opening_dialog_finished:
 		return
+	_check_crowbar_door_blocked_attempt()
 	if saw_exit:
 		_check_locked_exit_attempt()
 		_check_crowbar_seen()
@@ -105,6 +112,27 @@ func _check_crowbar_seen() -> void:
 		saw_crowbar = true
 		_show_timed_dialog(dialog["dialog_crowbar_seen"], 4.0)
 
+func _check_crowbar_door_blocked_attempt() -> void:
+	if tried_locked_exit:
+		return
+	if not Input.is_action_just_pressed("interact"):
+		return
+	var hit := _get_camera_interactable_hit()
+	if hit == crowbar_door_1_interactable or hit == crowbar_door_2_interactable:
+		_show_timed_dialog(dialog["dialog_go_exit_first"], 3.0)
+
+func _get_camera_interactable_hit() -> Interactable:
+	var ray_start := player_camera.global_position
+	var ray_end := ray_start + (-player_camera.global_transform.basis.z * 3.0)
+	var exclude: Array[RID] = [player.get_rid()]
+	var params := PhysicsRayQueryParameters3D.create(ray_start, ray_end, 0xFFFFFFFF, exclude)
+	params.collide_with_areas = true
+	params.collide_with_bodies = false
+	var result := get_viewport().world_3d.direct_space_state.intersect_ray(params)
+	if result.is_empty() or not result.collider is Interactable:
+		return null
+	return result.collider
+
 func _can_player_see_interactable(target_shape: CollisionShape3D, target_interactable: Interactable) -> bool:
 	var target_pos := target_shape.global_position
 	if player_camera.global_position.distance_to(target_pos) > exit_seen_distance:
@@ -122,8 +150,14 @@ func _can_player_see_interactable(target_shape: CollisionShape3D, target_interac
 
 func _on_locked_exit_attempted() -> void:
 	tried_locked_exit = true
+	_set_crowbar_doors_locked(false)
 	locked_door_sound.play()
 	_play_locked_exit_sequence()
+
+func _set_crowbar_doors_locked(is_locked: bool) -> void:
+	var required_item := CROWBAR_DOOR_LOCK_ITEM if is_locked else ""
+	crowbar_door_1_interactable.required_item = required_item
+	crowbar_door_2_interactable.required_item = required_item
 
 func _set_enemy_group_active(enemy_group: Node3D, is_active: bool) -> void:
 	if not is_instance_valid(enemy_group):

@@ -83,7 +83,6 @@ stream = ExtResource("15_a8f0k")
 
 [node name="Player" parent="." unique_id=518612789 instance=ExtResource("2_xasd6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.718769, 0.06515384, 56.77411)
-MAX_SPEED = 10.0
 
 [node name="Doors" type="Node3D" parent="." unique_id=580252542]
 
@@ -123,10 +122,10 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 32.3
 [node name="Door18" parent="Doors" unique_id=157752995 instance=ExtResource("3_h60nm")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 32.330055, 18.4, -3.8373566)
 
-[node name="Door9" parent="Doors" unique_id=2128597509 instance=ExtResource("3_h60nm")]
+[node name="Crowbar_Door_1" parent="Doors" unique_id=2128597509 instance=ExtResource("3_h60nm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.41385, -3.50001, -34.669132)
 
-[node name="Door10" parent="Doors" unique_id=868566552 instance=ExtResource("3_h60nm")]
+[node name="Crowbar_Door2" parent="Doors" unique_id=868566552 instance=ExtResource("3_h60nm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.004486, -3.471849, -34.609505)
 
 [node name="Door16" parent="Doors" unique_id=1340113673 instance=ExtResource("3_h60nm")]
