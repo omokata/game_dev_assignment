@@ -8,6 +8,7 @@ extends Node3D
 @onready var floor_2_enemy_patrol_chase_component: EnemyPatrolChaseComponent = $Enemy_Floor_2/EnemyPatrolChaseComponent
 @onready var break_in_sound: AudioStreamPlayer3D = $Enemy_Floor_1/BreakInSound
 @onready var locked_door_sound: AudioStreamPlayer = $LockedDoorSound
+@onready var panic_music: AudioStreamPlayer = $PanicMusic
 @onready var enemy_floor_1: Node3D = $Enemy_Floor_1
 @onready var enemy_2_floor_1: Node3D = $Enemy2_Floor_1
 @onready var enemy_floor_2: Node3D = $Enemy_Floor_2
@@ -40,6 +41,8 @@ var tried_locked_exit := false
 var saw_crowbar := false
 var opening_dialog_finished := false
 var dialog_token := 0
+var active_chasers := 0
+var panic_music_tween: Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -48,8 +51,15 @@ func _ready() -> void:
 	_connect_enemy_capture(enemy_patrol_chase_component)
 	_connect_enemy_capture(enemy_2_patrol_chase_component)
 	_connect_enemy_capture(floor_2_enemy_patrol_chase_component)
+	_connect_enemy_chase(enemy_patrol_chase_component)
+	_connect_enemy_chase(enemy_2_patrol_chase_component)
+	_connect_enemy_chase(floor_2_enemy_patrol_chase_component)
+	if panic_music.stream is AudioStreamMP3:
+		panic_music.stream.loop = true
 	crowbar_interactable.interacted.connect(_on_crowbar_picked)
 	key_interactable.interacted.connect(_on_key_picked)
+	crowbar_door_1_interactable.blocked_interaction_attempted.connect(_on_crowbar_door_blocked)
+	crowbar_door_2_interactable.blocked_interaction_attempted.connect(_on_crowbar_door_blocked)
 	_set_crowbar_doors_locked(true)
 	_set_enemy_group_active(enemy_2_floor_1, false)
 	_set_enemy_group_active(enemy_floor_2, false)
@@ -58,7 +68,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if not opening_dialog_finished:
 		return
-	_check_crowbar_door_blocked_attempt()
 	if saw_exit:
 		_check_locked_exit_attempt()
 		_check_crowbar_seen()
@@ -78,11 +87,17 @@ func _connect_enemy_capture(component: EnemyPatrolChaseComponent) -> void:
 	if component and not component.player_captured.is_connected(_on_player_captured):
 		component.player_captured.connect(_on_player_captured)
 
+func _connect_enemy_chase(component: EnemyPatrolChaseComponent) -> void:
+	if not component:
+		return
+	if not component.chase_started.is_connected(_on_enemy_chase_started):
+		component.chase_started.connect(_on_enemy_chase_started)
+	if not component.chase_ended.is_connected(_on_enemy_chase_ended):
+		component.chase_ended.connect(_on_enemy_chase_ended)
+
 func _on_crowbar_picked(_actor: Node, _interactable: Interactable) -> void:
-	if is_instance_valid(enemy_floor_1):
-		enemy_floor_1.queue_free()
-	if is_instance_valid(enemy_2_floor_1):
-		enemy_2_floor_1.queue_free()
+	_remove_enemy_group(enemy_floor_1, enemy_patrol_chase_component)
+	_remove_enemy_group(enemy_2_floor_1, enemy_2_patrol_chase_component)
 
 func _on_key_picked(_actor: Node, _interactable: Interactable) -> void:
 	_set_enemy_group_active(enemy_floor_2, true)
@@ -112,26 +127,8 @@ func _check_crowbar_seen() -> void:
 		saw_crowbar = true
 		_show_timed_dialog(dialog["dialog_crowbar_seen"], 4.0)
 
-func _check_crowbar_door_blocked_attempt() -> void:
-	if tried_locked_exit:
-		return
-	if not Input.is_action_just_pressed("interact"):
-		return
-	var hit := _get_camera_interactable_hit()
-	if hit == crowbar_door_1_interactable or hit == crowbar_door_2_interactable:
-		_show_timed_dialog(dialog["dialog_go_exit_first"], 3.0)
-
-func _get_camera_interactable_hit() -> Interactable:
-	var ray_start := player_camera.global_position
-	var ray_end := ray_start + (-player_camera.global_transform.basis.z * 3.0)
-	var exclude: Array[RID] = [player.get_rid()]
-	var params := PhysicsRayQueryParameters3D.create(ray_start, ray_end, 0xFFFFFFFF, exclude)
-	params.collide_with_areas = true
-	params.collide_with_bodies = false
-	var result := get_viewport().world_3d.direct_space_state.intersect_ray(params)
-	if result.is_empty() or not result.collider is Interactable:
-		return null
-	return result.collider
+func _on_crowbar_door_blocked(_actor: Node, _interactable: Interactable) -> void:
+	_show_timed_dialog(dialog["dialog_go_exit_first"], 3.0)
 
 func _can_player_see_interactable(target_shape: CollisionShape3D, target_interactable: Interactable) -> bool:
 	var target_pos := target_shape.global_position
@@ -158,6 +155,8 @@ func _set_crowbar_doors_locked(is_locked: bool) -> void:
 	var required_item := CROWBAR_DOOR_LOCK_ITEM if is_locked else ""
 	crowbar_door_1_interactable.required_item = required_item
 	crowbar_door_2_interactable.required_item = required_item
+	crowbar_door_1_interactable.blocked_prompt_message = "Go to the exit first" if is_locked else ""
+	crowbar_door_2_interactable.blocked_prompt_message = "Go to the exit first" if is_locked else ""
 
 func _set_enemy_group_active(enemy_group: Node3D, is_active: bool) -> void:
 	if not is_instance_valid(enemy_group):
@@ -180,9 +179,38 @@ func _play_locked_exit_sequence() -> void:
 	if not is_inside_tree():
 		return
 	_set_enemy_group_active(enemy_2_floor_1, true)
-	if is_instance_valid(enemy_floor_1):
-		enemy_floor_1.queue_free()
+	_remove_enemy_group(enemy_floor_1, enemy_patrol_chase_component)
 	await _show_timed_dialog(dialog["dialog_enemy_guarding"], 4.0)
+
+func _on_enemy_chase_started() -> void:
+	active_chasers += 1
+	_fade_panic_music(SettingsManager.bgm_db, true)
+
+func _on_enemy_chase_ended() -> void:
+	active_chasers = maxi(active_chasers - 1, 0)
+	if active_chasers == 0:
+		_fade_panic_music(-80.0, false)
+
+func _fade_panic_music(target_volume: float, should_play: bool) -> void:
+	if is_instance_valid(panic_music_tween):
+		panic_music_tween.kill()
+	if should_play and not panic_music.playing:
+		panic_music.volume_db = -80.0
+		panic_music.play(1.0)
+	panic_music_tween = create_tween()
+	panic_music_tween.tween_property(panic_music, "volume_db", target_volume, 0.8)
+	if not should_play:
+		panic_music_tween.tween_callback(_stop_panic_music_if_safe)
+
+func _stop_panic_music_if_safe() -> void:
+	if active_chasers == 0:
+		panic_music.stop()
+
+func _remove_enemy_group(enemy_group: Node3D, component: EnemyPatrolChaseComponent) -> void:
+	if component and component.is_chasing:
+		_on_enemy_chase_ended()
+	if is_instance_valid(enemy_group):
+		enemy_group.queue_free()
 
 func _play_key_picked_dialog() -> void:
 	_show_timed_dialog(dialog["dialog_key_picked"], 4.0)

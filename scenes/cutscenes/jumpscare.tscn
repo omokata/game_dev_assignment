@@ -38,6 +38,7 @@ spot_angle = 14.437514
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1854332714]
 transform = Transform3D(1, 0, 0, 0, 0.96288043, -0.2699283, 0, 0.2699283, 0.96288043, 0, 1.485461, 0.6572213)
+current = true
 fov = 53.437496
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera3D" unique_id=198802818]

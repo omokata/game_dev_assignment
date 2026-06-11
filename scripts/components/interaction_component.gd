@@ -30,8 +30,13 @@ func process_interaction(is_holding: bool, just_pressed: bool, just_released: bo
 		
 	var can_interact: bool = has_required_item.call(hit.required_item)
 	if not can_interact:
-		prompt_updated.emit("Requires %s" % hit.required_item, true)
+		var blocked_message: String = hit.blocked_prompt_message
+		if blocked_message.is_empty():
+			blocked_message = "Requires %s" % hit.required_item
+		prompt_updated.emit(blocked_message, true)
 		progress_updated.emit(0.0, false)
+		if just_pressed:
+			hit.block_interaction(get_parent())
 		return
 
 	prompt_updated.emit(hit.prompt_message, true)

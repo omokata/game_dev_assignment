@@ -12,3 +12,6 @@ func _process(delta: float) -> void:
 
 func play_js_sound() -> void:
 	$AudioStreamPlayer.play()
+
+func set_camera_active() -> void:
+	$Camera3D.make_current()

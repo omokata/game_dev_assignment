@@ -2,6 +2,8 @@ extends Node
 class_name EnemyPatrolChaseComponent
 
 signal player_captured
+signal chase_started
+signal chase_ended
 
 @export var enemy: CharacterBody3D
 @export var player: CharacterBody3D
@@ -44,6 +46,7 @@ func _update_path_progress(delta: float) -> void:
 
 
 func _update_chase_state() -> void:
+	var was_chasing := is_chasing
 	if enemy.has_method("can_see_player") and enemy.can_see_player(player):
 		is_chasing = true
 		current_speed = run_speed
@@ -54,6 +57,11 @@ func _update_chase_state() -> void:
 		current_speed = walk_speed
 		if enemy.has_method("play_walk_anim"):
 			enemy.play_walk_anim()
+
+	if is_chasing and not was_chasing:
+		chase_started.emit()
+	elif was_chasing and not is_chasing:
+		chase_ended.emit()
 
 
 func _move_enemy() -> void:

@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://bnt2iqer0isp1" path="res://scripts/components/enemy_patrol_chase_component.gd" id="10_bhmkp"]
 [ext_resource type="AudioStream" uid="uid://daaeakijov10m" path="res://assets/audio/break_in_sound.mp3" id="14_0w56m"]
 [ext_resource type="AudioStream" uid="uid://djweegcprp13c" path="res://assets/audio/door_locked.mp3" id="15_a8f0k"]
+[ext_resource type="AudioStream" uid="uid://bjdwtx51rw4ys" path="res://assets/audio/panic_music.mp3" id="16_y4h1k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xasd6"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -76,6 +77,10 @@ shadow_enabled = true
 
 [node name="LockedDoorSound" type="AudioStreamPlayer" parent="." unique_id=1897188212]
 stream = ExtResource("15_a8f0k")
+
+[node name="PanicMusic" type="AudioStreamPlayer" parent="." unique_id=1981144567]
+stream = ExtResource("16_y4h1k")
+volume_db = -80.0
 
 [node name="game map textured no objects" parent="." unique_id=261417171 instance=ExtResource("1_xasd6")]
 

@@ -2,8 +2,10 @@ extends Area3D
 class_name Interactable
 
 signal interacted(actor: Node, interactable: Interactable)
+signal blocked_interaction_attempted(actor: Node, interactable: Interactable)
 
 @export var prompt_message := "Interact"
+@export var blocked_prompt_message := ""
 @export var is_hold_interaction := false
 @export var hold_time := 2.0
 @export var required_item: String
@@ -16,3 +18,6 @@ func _ready() -> void:
 
 func interact(actor: Node) -> void:
 	interacted.emit(actor, self)
+
+func block_interaction(actor: Node) -> void:
+	blocked_interaction_attempted.emit(actor, self)
