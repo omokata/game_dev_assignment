@@ -6,6 +6,7 @@ const WALK_FACTOR = 0.4
 
 var walk_speed: float
 var current_speed: float
+var can_move := true
 
 @onready var interaction_component: InteractionComponent = $InteractionComponent
 @onready var player_hud: PlayerHUD = $CanvasLayer/PlayerHud
@@ -23,6 +24,16 @@ func _ready() -> void:
 
 func move_actor(direction: Vector3, wants_to_jump: bool, is_sprinting: bool, delta: float):
 	footstep_sound.volume_db = SettingsManager.sfx_db
+	if not can_move:
+		if not is_on_floor():
+			velocity += get_gravity() * delta
+		velocity.x = 0.0
+		velocity.z = 0.0
+		move_and_slide()
+		if footstep_sound.playing:
+			footstep_sound.stop()
+		return
+
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
@@ -81,6 +92,9 @@ func attach_item(item_to_attach: StaticBody3D):
 func add_to_inventory(item_name: String):
 	inventory_component.add_item(item_name, 1)
 
+func has_inventory_item(item_name: String) -> bool:
+	return inventory_component.has_item(item_name)
+
 func handle_interaction(_is_holding: bool, _just_pressed: bool, _just_released: bool) -> void:
 	var check_inventory_callable = func(item_name: String) -> bool:
 		if item_name.is_empty(): return true
@@ -99,3 +113,11 @@ func show_dialog(text: String):
 
 func hide_dialog():
 	player_hud.hide_dialog()
+
+func set_can_move(is_enabled: bool) -> void:
+	can_move = is_enabled
+	if not can_move:
+		velocity.x = 0.0
+		velocity.z = 0.0
+		if footstep_sound.playing:
+			footstep_sound.stop()

@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://du57r7duqbcw0" path="res://scenes/prefabs/riri_antagonist.tscn" id="9_vve0c"]
 [ext_resource type="Script" uid="uid://bnt2iqer0isp1" path="res://scripts/components/enemy_patrol_chase_component.gd" id="10_bhmkp"]
 [ext_resource type="AudioStream" uid="uid://daaeakijov10m" path="res://assets/audio/break_in_sound.mp3" id="14_0w56m"]
+[ext_resource type="AudioStream" uid="uid://djweegcprp13c" path="res://assets/audio/door_locked.mp3" id="15_a8f0k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xasd6"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -48,6 +49,21 @@ _data = {
 }
 point_count = 27
 
+[sub_resource type="Curve3D" id="Curve3D_0w56m"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.113334656, 3.096396, 2.6867828, 0, 0, 0, 0, 0, 0, -0.8970337, 3.1467397, 66.00527, 0, 0, 0, 0, 0, 0, -7.6884403, 3.1520529, 68.58205),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve3D" id="Curve3D_tvkij"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.21473789, -18.420044, 6.938114, 0, 0, 0, 0, 0, 0, 23.793144, -18.420044, 7.2248955, 0, 0, 0, 0, 0, 0, 23.739262, -18.420044, -8.078562, 0, 0, 0, 0, 0, 0, 0.24521637, -18.420044, -8.455761),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
 [node name="Chapter1Placeholder" type="Node3D" unique_id=1074820831]
 script = ExtResource("1_k6o78")
 
@@ -58,12 +74,15 @@ environment = SubResource("Environment_luuoh")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
+[node name="LockedDoorSound" type="AudioStreamPlayer" parent="." unique_id=1897188212]
+stream = ExtResource("15_a8f0k")
+
 [node name="game map textured no objects" parent="." unique_id=261417171 instance=ExtResource("1_xasd6")]
 
 [node name="map_objs" parent="." unique_id=666014107 instance=ExtResource("2_6kqrh")]
 
 [node name="Player" parent="." unique_id=518612789 instance=ExtResource("2_xasd6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.718769, 1.448832, 46.63966)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.718769, 0.06515384, 56.77411)
 MAX_SPEED = 10.0
 
 [node name="Doors" type="Node3D" parent="." unique_id=580252542]
@@ -178,7 +197,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="key_prop" parent="." unique_id=363591349 instance=ExtResource("6_6kqrh")]
-transform = Transform3D(-4.371137e-09, 0, -0.09999996, 0, 0.09999996, 0, 0.09999996, 0, -4.371137e-09, 46.3, 20.1, 46)
+transform = Transform3D(-4.371137e-09, 0, -0.09999996, 0, 0.09999996, 0, 0.09999996, 0, -4.371137e-09, 46.3, 19.288319, 46)
 disable_mode = 1
 collision_layer = 2
 collision_mask = 2
@@ -205,3 +224,37 @@ path_follow = NodePath("../Path3D_Level1/PathFollow3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.006935, 0, -7.6548157)
 stream = ExtResource("14_0w56m")
 volume_db = 20.0
+
+[node name="Enemy2_Floor_1" type="Node3D" parent="." unique_id=574679773]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -41.497406, -3.1275966, -28.812513)
+
+[node name="Path3D" type="Path3D" parent="Enemy2_Floor_1" unique_id=1531541567]
+curve = SubResource("Curve3D_0w56m")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Enemy2_Floor_1/Path3D" unique_id=1507730920]
+transform = Transform3D(-0.99992335, 9.839363e-06, 0.01237614, 9.094947e-13, 0.9999997, -0.0007950265, -0.012376143, -0.0007949656, -0.9999231, -0.113334656, 3.096396, 2.6867828)
+
+[node name="RiriAntagonist" parent="Enemy2_Floor_1" unique_id=1477469744 instance=ExtResource("9_vve0c")]
+
+[node name="EnemyPatrolChaseComponent" type="Node" parent="Enemy2_Floor_1" unique_id=854843375 node_paths=PackedStringArray("enemy", "player", "path_follow")]
+script = ExtResource("10_bhmkp")
+enemy = NodePath("../RiriAntagonist")
+player = NodePath("../../Player")
+path_follow = NodePath("../Path3D/PathFollow3D")
+
+[node name="Enemy_Floor_2" type="Node3D" parent="." unique_id=1823189198]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 38.39911, 18.420044, -7.918765)
+
+[node name="RiriAntagonist" parent="Enemy_Floor_2" unique_id=1451705748 instance=ExtResource("9_vve0c")]
+
+[node name="EnemyPatrolChaseComponent" type="Node" parent="Enemy_Floor_2" unique_id=1106718096 node_paths=PackedStringArray("enemy", "player", "path_follow")]
+script = ExtResource("10_bhmkp")
+enemy = NodePath("../RiriAntagonist")
+player = NodePath("../../Player")
+path_follow = NodePath("../Path3D/PathFollow3D")
+
+[node name="Path3D" type="Path3D" parent="Enemy_Floor_2" unique_id=175506529]
+curve = SubResource("Curve3D_tvkij")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Enemy_Floor_2/Path3D" unique_id=1967361200]
+transform = Transform3D(-0.011944411, 0, -0.99992865, 0, 1, 0, 0.99992865, 0, -0.011944411, -0.21473789, -18.420044, 6.938114)
