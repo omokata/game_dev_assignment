@@ -8,4 +8,4 @@ func _ready() -> void:
 
 func _on_interactable_interacted(actor: Node, interactable: Interactable):
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	SignalBus.main_menu_requested.emit()
+	SignalBus.game_won_requested.emit()

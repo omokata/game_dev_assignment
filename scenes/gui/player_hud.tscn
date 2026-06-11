@@ -94,3 +94,21 @@ offset_right = 20.0
 offset_bottom = 117.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="DialogContainer" type="RichTextLabel" parent="." unique_id=1783657525]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -170.0
+offset_right = 320.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+text = ""
+fit_content = true
+scroll_active = false

@@ -93,3 +93,9 @@ func handle_interaction(_is_holding: bool, _just_pressed: bool, _just_released: 
 		check_inventory_callable,
 		get_physics_process_delta_time()
 	)
+
+func show_dialog(text: String):
+	player_hud.show_dialog(text)
+
+func hide_dialog():
+	player_hud.hide_dialog()

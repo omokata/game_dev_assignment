@@ -4,12 +4,14 @@ class_name PlayerHUD
 @onready var interaction_progress_bar: ProgressBar = $InteractionProgressBar
 @onready var interaction_prompt_label: Label = $InteractionPromptLabel
 @onready var crosshair_rect: TextureRect = $CrosshairRect
+@onready var dialog_container: RichTextLabel = $DialogContainer
 
 func _ready() -> void:
 	SignalBus.pause_game_requested.connect(_on_game_paused)
 	SignalBus.resume_game_requested.connect(_on_game_resumed)
 	interaction_progress_bar.visible = false
 	interaction_prompt_label.visible = false
+	dialog_container.visible = false
 
 func update_prompt(text: String, visible: bool):
 	interaction_prompt_label.set_text(text)
@@ -35,3 +37,11 @@ func _on_game_paused() -> void:
 
 func _on_game_resumed() -> void:
 	set_selected_element_visibility(true)
+
+func show_dialog(text: String):
+	dialog_container.text = text
+	dialog_container.visible = true
+
+func hide_dialog():
+	dialog_container.text = ""
+	dialog_container.visible = false

@@ -8,6 +8,7 @@ const main_menu_scene = "res://scenes/gui/MainMenu.tscn"
 const first_scene = "res://scenes/cutscenes/cutscene_1.tscn"
 #const first_scene = "res://scenes/world/test_world.tscn"
 const player_menu = "res://scenes/gui/pause_menu.tscn"
+const win_ui_scene = "res://scenes/gui/win_ui.tscn"
 
 func _ready() -> void:
 	#process_mode = Node.PROCESS_MODE_ALWAYS
@@ -18,6 +19,7 @@ func _ready() -> void:
 	SignalBus.resume_game_requested.connect(_on_resume_game_requested)
 	SignalBus.main_menu_requested.connect(_on_main_menu_requested)
 	SignalBus.jumpscare_requested.connect(_on_jumpscare_requested)
+	SignalBus.game_won_requested.connect(_on_game_won_requested)
 	# Load main menu first
 	gui.load_menu(main_menu_scene)
 
@@ -70,4 +72,21 @@ func _on_jumpscare_requested() -> void:
 	world.load_world_scene("res://scenes/cutscenes/jumpscare.tscn")
 	await get_tree().create_timer(2.0).timeout
 	world.unload_current_world()
+	await _show_end_ui(false)
+
+func _on_game_won_requested() -> void:
+	world.resume_world()
+	world.unload_current_world()
+	await _show_end_ui(true)
+
+func _show_end_ui(is_win: bool) -> void:
+	gui.unload_current_menu()
+	gui.load_menu(win_ui_scene)
+	if gui.current_menu:
+		if is_win and gui.current_menu.has_method("show_win_UI"):
+			gui.current_menu.show_win_UI()
+		elif not is_win and gui.current_menu.has_method("show_lose_UI"):
+			gui.current_menu.show_lose_UI()
+	await get_tree().create_timer(3.0).timeout
+	gui.unload_current_menu()
 	gui.load_menu(main_menu_scene)

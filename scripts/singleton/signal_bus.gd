@@ -12,6 +12,7 @@ signal quit_game_requested
 signal pause_game_requested
 signal resume_game_requested
 signal jumpscare_requested
+signal game_won_requested
 signal change_scene_requested(path: String,
 	scene_to_unload_type: SCENE_TYPE, 
 	scene_to_load_type: SCENE_TYPE

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://61jl3wx7sybv"]
+
+[ext_resource type="Texture2D" uid="uid://dspnu0ps7mbce" path="res://assets/images/Win.png" id="1_u4au1"]
+[ext_resource type="Script" uid="uid://cruy3t6euwctr" path="res://scripts/gui/win_ui.gd" id="1_vam0o"]
+[ext_resource type="Texture2D" uid="uid://cgqkx21ybpxwi" path="res://assets/images/Lose.png" id="2_qx4aj"]
+
+[node name="WinState_UI" type="Control" unique_id=18807233]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vam0o")
+
+[node name="WinText" type="TextureRect" parent="." unique_id=1275453893]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_u4au1")
+expand_mode = 1
+
+[node name="LoseText" type="TextureRect" parent="." unique_id=1741063223]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qx4aj")
+expand_mode = 1
