@@ -3,9 +3,11 @@ extends Node3D
 @onready var player: CharacterBody3D = $Player
 @onready var riri_antagonist: CharacterBody3D = $Enemy_Floor_1/RiriAntagonist
 @onready var enemy_patrol_chase_component: EnemyPatrolChaseComponent = $Enemy_Floor_1/EnemyPatrolChaseComponent
+@onready var break_in_sound: AudioStreamPlayer3D = $Enemy_Floor_1/BreakInSound
 
 var dialog: Dictionary = {
-	"dialog_1": "Luckily I sneak into this 'dewan'. But I need to get out of here."
+	"dialog_1": "Luckily I sneak into this 'dewan'. But I need to get out of here.",
+	"dialog_2": "What was that sound? Sounds like it's coming from the left."
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -25,6 +27,15 @@ func _play_start_dialog() -> void:
 	if not is_inside_tree():
 		return
 	player.show_dialog(dialog["dialog_1"])
+	await get_tree().create_timer(3.0).timeout
+	if not is_inside_tree():
+		return
+	player.hide_dialog()
+	break_in_sound.play()
+	await get_tree().create_timer(1.0).timeout
+	if not is_inside_tree():
+		return
+	player.show_dialog(dialog["dialog_2"])
 	await get_tree().create_timer(3.0).timeout
 	if not is_inside_tree():
 		return

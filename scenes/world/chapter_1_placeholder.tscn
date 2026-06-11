@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://15h1ay3uiimf" path="res://scripts/interfaces/interactable.gd" id="8_kgf0m"]
 [ext_resource type="PackedScene" uid="uid://du57r7duqbcw0" path="res://scenes/prefabs/riri_antagonist.tscn" id="9_vve0c"]
 [ext_resource type="Script" uid="uid://bnt2iqer0isp1" path="res://scripts/components/enemy_patrol_chase_component.gd" id="10_bhmkp"]
+[ext_resource type="AudioStream" uid="uid://daaeakijov10m" path="res://assets/audio/break_in_sound.mp3" id="14_0w56m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xasd6"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -199,3 +200,8 @@ script = ExtResource("10_bhmkp")
 enemy = NodePath("../RiriAntagonist")
 player = NodePath("../../Player")
 path_follow = NodePath("../Path3D_Level1/PathFollow3D")
+
+[node name="BreakInSound" type="AudioStreamPlayer3D" parent="Enemy_Floor_1" unique_id=1523467565]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.006935, 0, -7.6548157)
+stream = ExtResource("14_0w56m")
+volume_db = 20.0
